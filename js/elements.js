@@ -95,7 +95,7 @@ function $manage_incubator(){
 
         $(events).each(function(){
             var $li = ich.list_entry(this);
-            raw_this = this;
+            var raw_this = this;
             $li.bind("click", function(){
                 GameController.event.trigger("manual_event", raw_this);
             });
@@ -104,6 +104,14 @@ function $manage_incubator(){
 
         //Get list of startups
         var startups = {};
+
+        $(startups).each(function(){
+           var $li = isc.list_entry(this);
+            var raw_this = this;
+            $li.bind("click", function(){
+                GameController.startup.trigger("show_startup", raw_this);
+            });
+        });
 
         //Get list of advisors
         var advisors = {};
@@ -117,6 +125,25 @@ function $manage_incubator(){
 
     function overlay_in_season(){
 
+    }
+}
+
+function $startup(){
+    var self = {};
+    var $elem = $("<div></div>");
+    make_elem();
+    return $elem;
+
+    function show_startup(e, the_startup){
+
+        GameController.pop_over($elem);
+    }
+
+
+    function make_elem(){
+        $elem = ich.startup_popup();
+        $elem.find("h2").text(the_startup.)
+        $elem.bind("show_startup", show_startup);
     }
 }
 
@@ -180,12 +207,8 @@ function $results(){
     }
 }
 
-function $startup_details(){
 
-    function show_startup(){
 
-    }
-}
 function $agent_details(){
 
     function show_agent(){
