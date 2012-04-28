@@ -16,12 +16,13 @@ G.init_round = (incubator) ->
   G.get_applications(7)
   G.accepting_applications = false
   G.get_advisors()
+  G.get_possible_events()
 
 G.get_applications = (count) ->
   G.startup_applications = [S.generate_startup() for i in [0..count]]
 
 G.get_advisors = () ->
-  G.advisors_for_hire = [A.generate_advisor() for i in [0..L.random_int(5)]]
+  G.advisors_for_hire = [A.generate_advisor() for i in [0..3]]
 
 G.get_possible_events = () ->
   G.events_for_hire = []
@@ -29,13 +30,17 @@ G.get_possible_events = () ->
     if C.events_costs[event]<= G.incubator.cash
       G.events_for_hire.push(event)
 
-G.add_startup = (startup, cash) ->
+G.add_startup = (index, cash) ->
+  startup = G.startup_applications[index]
   amount_shares = Math.floor(cash/startup.shares_price)
   S.buy_shares(startup, G.incubator, amount_shares)
   G.startups.push( startup )
+  G.startup_applications.pop(index)
 
-G.hire_advisor = (advisor) ->
+G.hire_advisor = (index) ->
+  advisor = G.advisors_for_hire[index]
   G.advisors.push(advisor)
+  G.advisors_for_hire.pop(index)
 
 G.fire_advisor = (index) ->
   startup_no = G.advisors[index].startup
@@ -107,9 +112,47 @@ G.next_month = () ->
   if disaster?
     G.incubator = E.disaster_occurs(disaster)
 
-G.trigger_event = (event) ->
+G.trigger_event = (index) ->
+  event = G.events_for_hire[index]
   E.buy_event(event, G.incubator, G.startups)
   G.events_that_happened.push(event)
+
+G.valuation = () ->
+  total = 0
+  for startup in G.startups
+    total+= S.valuation(startup)
+  G.incubator.cash +=total
+  G.startups = []
+  G.advisors = []
+
+G.print_universe = () ->
+  console.log(I.to_string(G.incubator))
+  console.log(L.industries_parameters_to_string())
+  for startup in G.startups
+    console.log(S.to_string(startup))
+  for advisor in G.advisors
+    console.log(A.to_string(advisor))
+
+G.test = () ->
+  G.init_round()
+  console.log('initial cash is ', G.incubator.cash)
+  G.add_startup(0,20*C.base_value)
+  G.add_startup(0,20*C.base_value)
+  G.hire_advisor(0)
+  G.hire_advisor(0)
+  G.assign_advisor(0,0)
+  G.assign_advisor(1,1)
+  for i in [1..3]
+    G.next_month()
+    G.print_universe()
+  if G.events_for_hire
+    G.trigger_event(0)
+  for i in [1..3]
+    G.next_month()
+    G.print_universe()
+  G.valuation()
+  console.log('final cash is ', G.incubator.cash)
+
 
 window.G = G
 

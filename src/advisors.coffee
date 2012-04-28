@@ -23,13 +23,6 @@ A.generate_advisor = () ->
   ret.startup = 0
   return ret
 
-
-#A.apply_advisor_to_startup = (advisor,startup) ->
-#  for team_member in startup.team
-#    for sector, knowledege of advisor.skill_knowledge
-#      team_member[sector] *= C.influences['advisor'] * advisor.free_time/10 * advisor.years_of_experience/10 * knowledge
-#  return startup
-
 A.compute_advisor_influence = (advisor, startup) ->
   #returns the hard number of the value the advisor adds to the success_value of the startup
   ref = 0
@@ -47,6 +40,27 @@ A.compute_advisor_influence = (advisor, startup) ->
       member[skill] = temp
   influence = S.startup_matchup(advised_startup)
   return influence
+
+A.to_string = (advisor) ->
+  str = "skills "
+  str+="[ "
+  for skill, value of advisor.skill_knowledge
+    str+=" "
+    str+=skill
+    str+=" : "
+    str+=value
+    str+=" "
+    str+=" ] "
+    str+="\n"
+  str+='free time : '
+  str+=advisor.free_time.toString()
+  str+=' experience : '
+  str+=advisor.years_of_experience.toString()
+  str+=' salary : '
+  str+=advisor.salary.toString()
+  str+=' startup : '
+  str+=advisor.startup.toString()
+  return str
 
 A.unit_test = () ->
   startup = S.generate_startup()

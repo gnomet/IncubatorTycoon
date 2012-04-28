@@ -54,5 +54,5 @@ C.events_costs[C.events[6]]=4*C.base_value
 C.events_costs[C.events[7]]=4*C.base_value
 C.events_costs[C.events[8]]=4*C.base_value
 
-C.incubator_starting_cash = 100*C.base_value
+C.incubator_starting_cash = 200*C.base_value
 window.C = C
