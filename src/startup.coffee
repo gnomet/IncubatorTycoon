@@ -3,37 +3,75 @@ random_team = (max_members =3) ->
   max_members = random_int(max_members)
   while i < max_members
     i++
-    {
-    marketing: random_int(10)
-    technical: random_int(10)
-    finance: random_int(10)
-    }
+    L.sector_values(C.all_skills)
 
 generate_startup = () ->
   ret =
     team_fit: random_int(10)
     team: random_team()
     business_cost: random_int(10)
+    burn_rate: random_int(10) * C.burn_basis
+    cash: random_int(5) * C.cash_basis
   industries =
     agriculture:
-      technical: 40
-      marketing: 40
-      finance: 20
+      technical: 4
+      marketing: 4
+      finance: 2
     hardware:
-      technical: 60
-      marketing: 30
-      finance: 10
+      technical: 6
+      marketing: 3
+      finance: 1
     health:
-      technical: 10
-      marketing: 30
-      finance: 50
+      technical: 1
+      marketing: 3
+      finance: 5
     buzzwords:
-      technical: 10
-      marketing: 80
-      finance: 10
+      technical: 1
+      marketing: 8
+      finance: 1
   industry = C.all_industries[random_int(C.all_industries.length-1)]
   ret.project_requirements = industries[ industry ]
+
+  ret.status = startup_matchup(ret) * C.starting_match_bias
+  ret.status -= L.random_int(C.possible_starting_deficit)
+
   return ret
 
+
+startup_matchup = (startup) ->
+  team_skills = {}
+  for member in startup.team
+    for skill, level of member
+      team_skills[skill] ?= 0
+      team_skills[skill] += level
+
+  magnitude_match = 0
+  for skill, level in team_skills
+    team_skills[skill] = level / startup.team.length
+    magnitude_match += team_skills[skill] * (startup.project_requirements[skill ] || 0 )
+  magnitude = 0
+  for skill,level in startup.project_requirements
+    magnitude += ( level*level )
+
+  match = magnitude_match/magnitude
+
+  return match
+
 develop_startup = (startup) ->
-  for
+  current_match = startup_matchup(startup)
+  startup.status += current_match * C.development_factor
+  return startup
+
+burn_startup = (startup) ->
+  burn_fraction = startup.burn_rate/5
+  profit = startup.status - 5
+  profit *= burn_fraction
+  startup.cash += profit
+  return startup
+
+
+
+
+
+
+
