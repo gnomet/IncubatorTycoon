@@ -47,4 +47,4 @@ A.advisor_unit_test = () ->
   console.log('advisor influence is ',influence)
   console.log('new success is ',success+influence)
 
-  window.A = A
+window.A = A

@@ -3,7 +3,7 @@ L.random_int = (range) -> Math.floor(Math.random() * (range + 1))
 L.sector_values = (list) ->
   ret = {}
   for industry in list
-    ret[industry]=random_int(10)
+    ret[industry]= L.random_int(10)
   return ret
 L.weather_impact = (industry) ->
   return -1 if industry is C.all_industries[0] or industry is C.all_industries[2]

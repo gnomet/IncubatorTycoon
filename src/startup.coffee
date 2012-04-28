@@ -41,7 +41,7 @@ S.generate_startup = () ->
     burn_rate: L.random_int(10) * C.burn_basis
     cash: L.random_int(10) * C.cash_basis
 
-  industry = C.all_industries[random_int(C.all_industries.length-1)]
+  industry = C.all_industries[L.random_int(C.all_industries.length-1)]
   ret.industry = industry
   ret.deficit -= L.random_int(C.possible_starting_deficit)
   ret.status = S.startup_matchup(ret) * C.starting_match_bias + ret.deficit
@@ -74,7 +74,7 @@ S.develop_startup = (startup) ->
   team_skills = S.compute_team_skills(startup)
   for member in startup.team
     for skill, level of member
-      if member[skill] < team_skills[skill] then
+      if member[skill] < team_skills[skill]
         member[skill] += startup.team_fit/10 * C.development_factor * Math.max(0,(team_skills[skill]-member[skill]))
   return startup
 

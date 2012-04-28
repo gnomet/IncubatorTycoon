@@ -2,7 +2,7 @@
 
 
 
-console.log({ a: random_int(3) for a in ["hello", "goodbye"]})
+console.log({ a: L.random_int(3) for a in ["hello", "goodbye"]})
 
 
 #propose_advisors = (how_many=10) ->
