@@ -45,21 +45,15 @@ startup_matchup = (startup) ->
       team_skills[skill] ?= 0
       team_skills[skill] += level
 
-  magnitude_match = 0
-  for skill, level in team_skills
-    team_skills[skill] = level / startup.team.length
-    magnitude_match += team_skills[skill] * (startup.project_requirements[skill ] || 0 )
-  magnitude = 0
-  for skill,level in startup.project_requirements
-    magnitude += ( level*level )
-
-  match = magnitude_match/magnitude
+  match = 0
+  for skill, importance in startup.project_requirements
+    match += importance * 0.1 * team_skills[skill]
 
   return match
 
 develop_startup = (startup) ->
   current_match = startup_matchup(startup)
-  startup.status += current_match * C.development_factor
+  startup.status += current_match * C.development_factor * startup.team_fit * 0.1
   return startup
 
 burn_startup = (startup) ->
