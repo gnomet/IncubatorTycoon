@@ -123,7 +123,7 @@ S.to_string = (startup) ->
   str+=startup.status.toString()
   return str
 
-S.startup_unit_test = () ->
+S.unit_test = () ->
   startup = S.generate_startup()
   console.log('startup is ', S.to_string(startup))
   #console.log('success is ',startup.status)
@@ -132,13 +132,14 @@ S.startup_unit_test = () ->
   startup = S.burn_startup(startup)
   console.log('startup burned ',S.to_string(startup))
 
-S.startup_progress_test = () ->
+S.progress_test = () ->
   startup = S.generate_startup()
   console.log('startup is initially', S.to_string(startup))
   for i in [1,2,3,4,5,6]
      startup = S.develop_startup(startup)
      startup = S.burn_startup(startup)
   console.log('startup is after 6 months', S.to_string(startup))
+
 window.S = S
 
 

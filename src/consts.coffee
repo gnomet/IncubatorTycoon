@@ -13,11 +13,11 @@ C.possible_starting_deficit = 7
 C.development_factor = 0.2
 C.burn_basis = 2* C.base_value
 C.cash_basis = 10* C.base_value
-C.advisor_basis_salary = 2* C.base_value
+C.advisor_basis_salary = 10* C.base_value
 C.advisor = {
-  total_knowledge: 0.25
-  free_time:0.35
-  years_of_experience: 0.4
+  total_knowledge: 0.1
+  free_time:0.3
+  years_of_experience: 0.6
 }
 C.industries_parameters = {
   agriculture:

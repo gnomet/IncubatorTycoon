@@ -42,7 +42,7 @@ I.compute_incubator_influence = (success_metric, industry, incub_parameters) ->
     #console.log('current modification ',temp)
   return ret
 
-I.incubator_unit_test = () ->
+I.unit_test = () ->
   success_metric = L.random_int(10)
   console.log('success is ',success_metric)
   industry = C.all_industries[L.random_int(C.all_industries.length-1)]
