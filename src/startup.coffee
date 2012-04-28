@@ -28,39 +28,38 @@ S={}
 S.random_team = (max_members =3) ->
   i = 0
   team = []
-  max_members = L.random_int(max_members)
-  while i < max_members
+  members = Math.max(1,L.random_int(max_members))
+  while i < members
     team[i]=L.sector_values(C.all_skills)
     i++
   return team
 
 S.generate_startup = () ->
-  ret =
-    team_fit: L.random_int(10)
+  ret ={
     team: S.random_team()
-    burn_rate: L.random_int(10) * C.burn_basis
+    burn_rate: Math.max(1,L.random_int(10)) * C.burn_basis
     cash: L.random_int(10) * C.cash_basis
-
+  }
+  ret.team_fit = if ret.team.length > 1 then  L.random_int(10) else  0
   industry = C.all_industries[L.random_int(C.all_industries.length-1)]
   ret.industry = industry
-  ret.deficit -= L.random_int(C.possible_starting_deficit)
+  ret.deficit = 0 - Math.max(1,L.random_int(C.possible_starting_deficit))
   ret.status = S.startup_matchup(ret) * C.starting_match_bias + ret.deficit
   return ret
 
 S.compute_team_skills = (startup) ->
   team_skills = {}
-  for member in startup.team
-    for skill, level of member
-      team_skills[skill] ?= 0
-      team_skills[skill] += level
-  for skill, level of team_skills
-    team_skills[level] /= startup.team.length #normalize to team size
+  for skill in C.all_skills
+    team_skills[skill] = 0
+    for member in startup.team
+      team_skills[skill] += member[skill]
+    team_skills[skill] /= startup.team.length #normalize to team size
   return team_skills
 
 S.startup_matchup = (startup) ->
   team_skills = S.compute_team_skills(startup)
   match = 0
-  for skill, importance in C.industries_parameters[startup.industry]
+  for skill, importance of C.industries_parameters[startup.industry]
     match += importance * team_skills[skill]
   return match
 
@@ -71,31 +70,75 @@ S.startup_matchup = (startup) ->
 
 S.develop_startup = (startup) ->
   #members can learn from 1 another based on their team_fit and the global development factor
-  team_skills = S.compute_team_skills(startup)
+  #team_skills = S.compute_team_skills(startup)
+  maxim_skill = {}
+  for skill in C.all_skills
+    maxim_skill[skill] = 0
+    for member in startup.team
+      maxim_skill[skill] = if member[skill]>maxim_skill[skill] then member[skill] else maxim_skill[skill]
   for member in startup.team
     for skill, level of member
-      if member[skill] < team_skills[skill]
-        member[skill] += startup.team_fit/10 * C.development_factor * Math.max(0,(team_skills[skill]-member[skill]))
+      if member[skill] < maxim_skill[skill]
+        member[skill] += startup.team_fit/10 * C.development_factor * Math.max(0,(maxim_skill[skill]-member[skill]))
+  S.update_success(startup)
   return startup
 
+S.update_success = (startup) ->
+  startup.status = S.startup_matchup(startup) + startup.deficit
 
 S.burn_startup = (startup) ->
-  burn_fraction = startup.burn_rate/5
-  profit = startup.status - 5
-  profit *= burn_fraction
+  if startup.status > 0
+    burn_fraction = startup.burn_rate/5
+    profit = startup.status - 5
+    profit *= burn_fraction
+  else
+    profit = -startup.burn_rate
   startup.cash += profit
+  console.log('burned ', profit)
   return startup
+
+S.to_string = (startup) ->
+  str = ""
+  for member in startup.team
+    str+="[ "
+    for skill, value of member
+      str+=" "
+      str+=skill
+      str+=" : "
+      str+=value
+      str+=" "
+    str+=" ] "
+    str+="\n"
+  str+='team_fit : '
+  str+=startup.team_fit.toString()
+  str+=' cash : '
+  str+=startup.cash.toString()
+  str+=' operation_cost : '
+  str+=startup.burn_rate.toString()
+  str+=' industry : '
+  str+=startup.industry
+  str+=' deficit : '
+  str+=startup.deficit.toString()
+  str+=' success : '
+  str+=startup.status.toString()
+  return str
 
 S.startup_unit_test = () ->
   startup = S.generate_startup()
-  console.log('startup is ',startup)
-  match = S.startup_matchup(startup)
-  console.log('success is ',match)
+  console.log('startup is ', S.to_string(startup))
+  #console.log('success is ',startup.status)
   startup = S.develop_startup(startup)
-  console.log('startup developed into ',startup)
+  console.log('startup developed into ', S.to_string(startup))
   startup = S.burn_startup(startup)
-  console.log('startup burned ',startup)
+  console.log('startup burned ',S.to_string(startup))
 
+S.startup_progress_test = () ->
+  startup = S.generate_startup()
+  console.log('startup is initially', S.to_string(startup))
+  for i in [1,2,3,4,5,6]
+     startup = S.develop_startup(startup)
+     startup = S.burn_startup(startup)
+  console.log('startup is after 6 months', S.to_string(startup))
 window.S = S
 
 
