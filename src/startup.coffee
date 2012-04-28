@@ -127,10 +127,10 @@ S.unit_test = () ->
   startup = S.generate_startup()
   console.log('startup is ', S.to_string(startup))
   #console.log('success is ',startup.status)
-  startup = S.develop_startup(startup)
-  console.log('startup developed into ', S.to_string(startup))
   startup = S.burn_startup(startup)
   console.log('startup burned ',S.to_string(startup))
+  startup = S.develop_startup(startup)
+  console.log('startup developed into ', S.to_string(startup))
 
 S.progress_test = () ->
   startup = S.generate_startup()
