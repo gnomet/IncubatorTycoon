@@ -104,6 +104,112 @@ var db = {
                 }
             }
 	}],
+	"event": {
+	  "earthquake": {
+	      "title": "Earthquake",
+	      "description": "A strong earthquake is shaking your city! The damage caused to infrastructure is causing people to focus on rebuilding and there will be a probably decline in sales on all sectors.",
+	      "choice": false
+	  },
+	  "weather": {
+	      "title": "Weather has changed suddenly",
+	      "description": "See positive_description and negative_description to pick the right one based on the direction of the weather change",
+	      "positive_description": "Sun is shinign! The weather in your city has changed to significantly better direction. This will have a positive effect on agriculuture and health sector, but might lead to smaller sales in web and hardware sectors.",
+	      "negative_description": "Bad news from the weather forecast. The weather in your city is going to change to worse direction and agriculture and healthcare will suffer from that. The rainy days might however increase the demand for web services, home electronics and other hardware.",
+	      "choice": false
+	  },
+	  "audit": {
+	      "title": "Government auditing your incubator",
+	      "description": "No time to panic! (If your papers are in order.) The governemnt officials are doing a check to your company and seeing that their money is used correctly. Usually they are favouring bit more the traditional industries and buzzword reliant startups may be under stricter surveilance.",
+	      "choice": false
+	  },
+	  "reimbursement": {
+	      "title": "Delays in the reimbursement process",
+	      "description": "The reimbursement process for startups has been delayd due the high peak in paper work. This can cause some trouble on startups running lean on thight budget, but things should return to normal pretty soon.",
+	      "choice": false
+	  },
+	  "imports": {
+	      "title": "Changes in import law",
+	      "description": "Government is changing the policies regarding imported goods. Industries relying on imported goods will see an increase in their costs, but service sector should not be affected.",
+	      "choice": false
+	  },
+	  "exit": {
+	      "title": "1 billion exit done from your country",
+	      "description": "A starup from your country just confirmed a billion dollar exit. Unfortunately not yet from your incubator, but this event got a lot of media attention worldwide and also will increase the interest towards your incubator and assist the marketing efforts of your incubated companies.",
+	      "choice": false
+	  },
+	  "demo_day": {
+  	      "title": "Demo Day",
+  	      "description": "You organize a Demo Day to showcase your most prominent startups. This improves the reputation of your incubator and helps your startups to get feedback, learn and market their products.",
+  	      "choice": true,
+  	      "allow_string": "Yea let's do it and invite everyone! And spank our startups to do their best on stage.",
+  	      "deny_string": "Uhh, sounds like a hassle to organize",
+  	      "cost": 0
+  	  },
+  	  "richard_branson": {
+  	      "title": "Invite Richard Branson to visit your incubator",
+  	      "description": "Invite Sir Richard Branson to visity your incubator. Pay his expenses and mobilize your startup folks to do some guerilla marketing. This will surely have a positive effect on everything your incubator touches.",
+  	      "choice": true,
+  	      "allow_string": "Yeay, Branson's glory will save the day!",
+  	      "deny_string": "Nah, he'll pay to visit us soon...",
+  	      "cost": 0
+  	  },
+  	  "paul_graham": {
+  	      "title": "Invite Paul Graham to give a talk in your incubator",
+  	      "description": "Paul Graham could be interested to give a talk that would surely contribute to the technical skills and enthusiasm of your startups.",
+  	      "choice": true,
+  	      "allow_string": "Gimme Paul!",
+  	      "deny_string": "I'll think I'll just tell the juniors a trick of two myself.",
+  	      "cost": 0
+  	  },
+  	  "promote_international": {
+  	      "title": "Send one of your team to promote your incubator internationally",
+  	      "description": "There's a big startup event coming overseas and sending someone to promote your incubator could increase your reputation a lot and possibly result in more and better applications in the future.",
+  	      "choice": true,
+  	      "allow_string": "Sure! Let our message be heard.",
+  	      "deny_string": "The next billion dollar startup we're incubating will bring us all the reputation we need.",
+  	      "cost": 0
+  	  },
+  	  "promote_national": {
+  	      "title": "Participate in a local event to promote your incubator",
+  	      "description": "To get more applications from your country, you can send a promoter to upcoming event to increase your reputation in your home country.",
+  	      "choice": true,
+  	      "allow_string": "Yep, all publicity is good publicity.",
+  	      "deny_string": "Not this time.",
+  	      "cost": 0
+  	  },
+  	  "simplify_reimbursement": {
+  	      "title": "Simplify reimbursement process",
+  	      "description": "The reimbursement process is currently quite bureaucratic, and simplifying it could save startups time to do more productive work.",
+  	      "choice": true,
+  	      "allow_string": "Hu, my process? Well, maybe there's slightly room for improvement.. ",
+  	      "deny_string": "Nope, it will grow them up to fill a few papers.",
+  	      "cost": 0
+  	  },
+  	  "lecture_marketing": {
+  	      "title": "Lecture in marketing",
+  	      "description": "Organize a lecture with a marketing professional to teach some new stuff to your startups",
+  	      "choice": true,
+  	      "allow_string": "Sure",
+  	      "deny_string": "No",
+  	      "cost": 0
+  	  },
+  	  "lecture_technical": {
+  	      "title": "Lecture about technology",
+  	      "description": "This lecture has tips and trick especially for web startups, but helpful stuff for everyone's technical skills.",
+  	      "choice": true,
+  	      "allow_string": "Tech, yes",
+  	      "deny_string": "Techno",
+  	      "cost": 0
+  	  },
+  	  "lecture_finance": {
+  	      "title": "Finances lecture",
+  	      "description": "Get a finance professional teach your startups the essentials of keeping the finnances in order.",
+  	      "choice": true,
+  	      "allow_string": "Organize this",
+  	      "deny_string": "No thanks",
+  	      "cost": 0
+  	  }
+	},
 	"texts": {
 		"weather": {
 			"10": "Weather is really good",
@@ -327,45 +433,45 @@ var db = {
 			"0": "The team members usually remember each other's first names"
 		},
 		"marketing_skills": {				
-			"10": "He has been the marketing director of a big and succesful company",
-			"9": "He has years of marketing experience in different companies",
+			"10": "They have been the marketing director of a big and succesful company",
+			"9": "They have years of marketing experience in different companies",
 			"8": "",
-			"7": "He has good experience on marketing and sales",
-			"6": "He has studied marketing as his major and has also work experience in the field",
+			"7": "They have good experience on marketing and sales",
+			"6": "They have studied marketing as his major and has also work experience in the field",
 			"5": "",
-			"4": "He has been doing some marketing work among other tasks",
+			"4": "They have been doing some marketing work among other tasks",
 			"3": "",
-			"2": "He has done some courses in marketing at college",
+			"2": "They have done some courses in marketing at college",
 			"1": "",
-			"0": "He doesn't have any knowledge in marketing"
+			"0": "They don't have any knowledge in marketing"
 		},
 		"tech_skills": {				
-			"10": "He has been earlier a CTO of a multimillion dollar company",
-			"9": "He has very strong work background in technical skills",
-			"8": "He has participated in many open source projects in leading architect role",
-			"7": "He's pretty experienced in technical field",
+			"10": "They have been a CTO of a multimillion dollar company",
+			"9": "They have very strong work background in technical skills",
+			"8": "They have participated in many open source projects in leading architect role",
+			"7": "They're pretty experienced in technical field",
 			"6": "",
-			"5": "He has worked few years in technical field and studied that in college",
-			"4": "He was studied software development in college",
+			"5": "They have worked few years in technical field and studied that in college",
+			"4": "They were studied software development in college",
 			"3": "",
-			"2": "He knows how to code simple programs",
+			"2": "They know how to code simple programs",
 			"1": "",
-			"0": "He doesn't know anything about technical things"
+			"0": "They don't know anything about technical things"
 		},
 		"finance_skills": {							
-			"10": "He has lead the finances of a big company before switching to a startup.",
-			"9": "He studied finances as his major and has worked over 10 years in the field",
-			"8": "He studied finances as his major and has worked over 5 years in the field",
-			"7": "He has strong financial skills and years of work experience on the field",
+			"10": "They have lead the finances of a big company before switching to a startup.",
+			"9": "They studied finances as their major and have worked over 10 years in the field",
+			"8": "They studied finances as their major and have worked over 5 years in the field",
+			"7": "They have strong financial skills and years of work experience in the field",
 			"6": "",
-			"5": "He has studied finances at college, and has some work experience on the field",
-			"4": "He has studied finances at college, but doesn't have much work experience in that.",
-			"3": "He has worked as a secretary also handling some minor financial decision",
+			"5": "They have studied finances at college, and have some work experience in the field",
+			"4": "They have studied finances at college, but don't have much work experience in the field.",
+			"3": "They have worked as a secretary and also have handled some minor financial decision",
 			"2": "",
-			"1": "He has some interest to money, but usually ends up losing in any financial decisions",
-			"0": "He has no financial skills at all"
+			"1": "They have some interest in money, but usually ends up losing in any financial decisions",
+			"0": "They have no financial skills at all"
 		},
-		"empty_template_for_copy_paste": {				
+		"empty_template_for_copy_paste": {	
 			"10": "",
 			"9": "",
 			"8": "",
@@ -378,6 +484,26 @@ var db = {
 			"1": "",
 			"0": ""
 		},
+	},
+	"first_names": ["Jeremy", "Suhail", "Abhinav", "Adam", "Alan", "Alejandra", "Alejandro", "Alex", "Alexandru", "Alexy", "Andres", "Andrew", "Anna", "Anne-Sophie", "Antti", "Ari", "Arik", "Ayan", "Ben", "Bernardo", "Bernardo", "Brian", "Camuel", "Carlos", "Carolina", "Charles", "Colin", "Cristian", "Cristina", "Daniel", "Daniel", "Danny", "David", "Dean", "Demian", "Denis", "Diego", "Dorothy", "Elizabeth", "Elsa", "Emily", "Fernando", "Frederico", "Gabriel", "Gabriela", "Gaston", "German", "Gert", "Gosia", "Grant", "Greg", "Gustavo", "Ian", "Jacklyn", "James", "Jared", "Jen", "Jennifer", "Jens", "Jeremy", "Johanna", "Jonny", "Joseph", "Josh", "Juan", "Kathryn", "Kevin", "Krista", "Kyran", "Langdon", "Liis", "Loo", "Luis", "Lydia", "Marijn", "Marisol", "Maria", "Mateusz", "Matthew", "Matias", "Mauro", "Michael", "Miguel", "Mihai", "Mitul", "Nayana", "Nicolas", "Nisar", "Olga", "Olivers", "Oscar", "Ozan", "Pablo", "Patrick", "Pedro", "Perla", "Pete", "Peter-Jan", "Ragnar", "Rebecca", "Robert", "Roberto", "Rosario", "Ryan", "Salvador", "Sam", "Sandaruwan", "Srinivasan", "Stephen", "Steve", "Sudharshan", "Tara", "Taylor", "Thiago", "Thomas", "Tim", "Tom", "Ture", "Tyler", "Vamshi", "Victor", "Wei", "Xuening", "Youssef"],
+    "last_names": ["Einhorn", "Shaikh", "Sarangi", "Link", "Kind", "Negrete", "Matamala", "Hughson", "Palade", "Sudachen", "Arellano", "Cross", "Korolyuk", "Dutat", "Virolainen", "Shomair", "Meyer", "Barua", "Kaplan", "Joselevich", "Porto", "Bowers", "Gilyadov", "Contreras", "Rossi", "Van Norman", "Fain", "Wolleter", "Palacios", "Ponce", "Rojas", "Fein", "Cuadrado", "Fischer", "Renzulli", "Todirica", "Wawrzeniak", "Sanders", "Taylor", "Chang", "Toop", "Diaz", "Skwara", "Mazzotti", "Mejia", "Dussaillant", "Rimoldi", "Findel", "Lapsa-Malawska", "Devine", "Gage", "Veloso", "Ozsvald", "Giron", "Freedman", "Broad", "Peck", "Turliuk", "Kasemets", "Melul", "Molina", "Miller", "Darnell", "Stabback", "Francisco Apparcel", "Davies", "Kent", "Canellakis", "Dale", "Page", "Peetermann", "Wan Koe", "Loaiza", "Schueltken", "Berk", "Garcia", "Luz Hortal", "Phiong", "Gutierrez", "Trigo", "Malawska", "Green", "Torres", "Voica", "Jain", "Somaratna", "Palacios", "Shaikh", "Marchevska", "De Abreu", "Rodriguez", "Onay", "Buzio", "Kedziora", "Gray", "Ayora", "Field", "Celis", "Sass", "West", "Dombkowski", "Gluck", "Hernandez", "Lou", "de la Barrera", "O'Keefe", "Gunathilake", "Sep", "Hazeltine", "Hazeltine", "Smith", "Roberts", "Moore", "Cardoso", "Grandperrin", "Marzullo", "Bergstein", "Strange", "Ulrich", "Mokshagundam", "Pereira", "An", "Sun", "Chaker"],
+	"slogan_parts": {
+	    "first": ["Airbnb", "Google", "Skype", "LinkedIn", "Pandora", "Path", "Instagram", "Facebook", "Twitter", "Flickr", "Dropbox", "Yammer", "Quora", "Stackoverflow", "Twilio", "Klout", "Foursquare"],
+	    "last": ["Monkeys", "Cats", "Hammers", "Cars","apples", "arms", "bananas", "bikes", "birds", "books", "clubs", "corns", "crayons", "crows", "crowns", "crowds", "desks", "dresss", "flags", "flowers", "games", "hills", "homes", "horns", "hoses", "jokes", "juices", "kites", "lakes", "maids", "masks", "mice", "mints", "meals", "meats", "moons", "mothers", "mornings", "names", "nests", "noses", "pears", "pens", "pencils", "plants", "rains", "rivers", "roads", "rocks", "rooms", "roses", "shapes", "shoes", "shops", "shows", "sinks", "snails", "snakes", "sodas", "sofas", "stars", "steps", "stews", "stoves", "straws", "strings", "summer", "swings", "tables", "tanks", "teams", "tents", "tests", "toes", "trees", "vests", "water", "wings", "winters", "balls", "bats", "beds", "books", "boys", "buns", "cans", "cakes", "caps", "cars", "cats", "cows", "cubs", "cups", "dads", "days", "dogs", "dolls", "fans", "feet", "girls", "guns", "halls", "hats", "jars", "maps", "moms", "pans", "pets", "pies", "pigs", "pots", "rats", "animals", "aunts", "baits", "balloons", "beans", "bedrooms", "boots", "breads", "bricks", "brothers", "camps", "chickens", "deers", "doctors", "downtowns", "drums", "eyes", "fights", "flesh", "frogs", "gooses", "your mother", "grapes", "hooks", "horses", "jails", "jam", "kisses", "kittens", "lights", "locks", "lunches", "lunchrooms", "meals", "notebooks", "owls", "pails", "parents", "parks", "plots", "rabbits", "Batmans", "seas", "sisters", "soaps", "songs", "sparks", "spaces", "spoons", "summers", "tigers", "toads", "towns", "trails", "tramps", "tricks", "trips", "uncles", "vases", "winters", "weeks", "wheels", "wishes", "yards", "zebras", "vans", "actors", "airplanes", "airports", "armies", "baseballs", "beef", "birthdays", "brushes", "bushes", "casts", "caves", "cherries", "cobwebs", "coils", "crackers", "dinner", "eggnog", "elbows", "faces", "firemen", "flavors", "gates", "gloves", "glues", "goldfishes", "geese", "grain", "hair", "haircuts", "hobbies", "holidays", "jellyfish", "ladybugs", "mailboxes", "numbers", "oatmeal", "pails", "pancakes", "pears", "pests", "popcorn", "quicksand", "quiet", "quilts", "rainstorms", "scarecrows", "scarfs", "streams", "streets", "sugars", "thrones", "toothpaste", "twigs", "volleyballs", "wrenches", "recycled product ideas", "Santiago sandwicherias", "Llamas", "Medialunas", "Reimbursements"],
+	    "surroundings": [
+	        ["It's", "of"],
+	        ["It's", "of"],
+	        ["It's", "of"],
+	        ["It's", "of"],
+	        ["It's", "of"],
+	        ["It is", "for"],
+	        ["It is", "for"],
+	        ["It is", "for"],
+	        ["It's like", "with"],
+	        ["It's like", "with"],
+	        ["It's like", "with"],
+	        ["It's like", "without"],
+	    ]
 	}
-	
+	    
 }

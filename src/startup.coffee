@@ -43,9 +43,22 @@ S.generate_startup = () ->
   ret.team_fit = if ret.team.length > 1 then  L.random_int(10) else  0
   industry = C.all_industries[L.random_int(C.all_industries.length-1)]
   ret.industry = industry
+  ret.name = "Richard Branson"
   ret.deficit = 0 - Math.max(1,L.random_int(C.possible_starting_deficit))
   ret.status = S.startup_matchup(ret) * C.starting_match_bias + ret.deficit
+  ret.shares_min = L.random_int(10)
+  ret.shares_max = 11 + L.random_int(40)
+  ret.shares_bought = 0
+  ret.shares_price = Math.max(1,L.random_int(5))*C.base_value
+  ret.advisor = 0
   return ret
+
+S.valuation = (startup) ->
+  profit = startup.cash - startup.shares_price*100
+  share_price_change =  profit/100
+  startup.shares_price += share_price_change
+  investment_value = startup.shares_bought*startup.shares_price
+  return investment_value
 
 S.compute_team_skills = (startup) ->
   team_skills = {}
@@ -62,6 +75,12 @@ S.startup_matchup = (startup) ->
   for skill, importance of C.industries_parameters[startup.industry]
     match += importance * team_skills[skill]
   return match
+
+S.buy_shares = (incubator, startup, shares_number) ->
+  tranzaction = shares_number*startup.shares_price
+  incubator.cash -= tranzaction
+  startup.cash +=tranzaction
+  startup.shares_bought = shares_number
 
 #S.develop_startup = (startup) ->
 #  current_match = S.startup_matchup(startup)
@@ -86,7 +105,7 @@ S.develop_startup = (startup) ->
 S.update_success = (startup) ->
   startup.status = S.startup_matchup(startup) + startup.deficit
 
-S.burn_startup = (startup) ->
+S.burn_startup = (startup, incubator) ->
   if startup.status > 0
     burn_fraction = startup.burn_rate/5
     profit = startup.status - 5
@@ -94,7 +113,8 @@ S.burn_startup = (startup) ->
   else
     profit = -startup.burn_rate
   startup.cash += profit
-  console.log('burned ', profit)
+  living_costs = startup.team.length*incubator.living_cost
+  startup.cash -= living_costs
   return startup
 
 S.to_string = (startup) ->
@@ -121,9 +141,16 @@ S.to_string = (startup) ->
   str+=startup.deficit.toString()
   str+=' success : '
   str+=startup.status.toString()
+  str+=' min_shares : '
+  str+=startup.shares_min.toString()
+  str+=' max_shares : '
+  str+=startup.shares_max.toString()
+  str+=' share price : '
+  str+=startup.shares_price.toString()
   return str
 
 S.unit_test = () ->
+  incubator = I.generate_incubator()
   startup = S.generate_startup()
   console.log('startup is ', S.to_string(startup))
   #console.log('success is ',startup.status)
@@ -137,7 +164,7 @@ S.progress_test = () ->
   console.log('startup is initially', S.to_string(startup))
   for i in [1,2,3,4,5,6]
      startup = S.develop_startup(startup)
-     startup = S.burn_startup(startup)
+     startup = S.burn_startup(startup,incubator)
   console.log('startup is after 6 months', S.to_string(startup))
 
 window.S = S
