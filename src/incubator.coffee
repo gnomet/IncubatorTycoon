@@ -7,6 +7,7 @@ I.generate_incubator = () ->
   university_network: L.sector_values(C.all_industries)
   home_popularity: L.random_int(10)
   world_popularity: L.random_int(10)
+  available_cash:C.incubator_starting_cash
   }
 
   return ret
