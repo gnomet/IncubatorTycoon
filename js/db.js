@@ -104,6 +104,112 @@ var db = {
                 }
             }
 	}],
+	"event": {
+	  "earthquake": {
+	      "title": "Earthquake",
+	      "description": "A strong earthquake is shaking your city! The damage caused to infrastructure is causing people to focus on rebuilding and there will be a probably decline in sales on all sectors.",
+	      "choice": false
+	  },
+	  "weather": {
+	      "title": "Weather has changed suddenly",
+	      "description": "See positive_description and negative_description to pick the right one based on the direction of the weather change",
+	      "positive_description": "Sun is shinign! The weather in your city has changed to significantly better direction. This will have a positive effect on agriculuture and health sector, but might lead to smaller sales in web and hardware sectors.",
+	      "negative_description": "Bad news from the weather forecast. The weather in your city is going to change to worse direction and agriculture and healthcare will suffer from that. The rainy days might however increase the demand for web services, home electronics and other hardware.",
+	      "choice": false
+	  },
+	  "audit": {
+	      "title": "Government auditing your incubator",
+	      "description": "No time to panic! (If your papers are in order.) The governemnt officials are doing a check to your company and seeing that their money is used correctly. Usually they are favouring bit more the traditional industries and buzzword reliant startups may be under stricter surveilance.",
+	      "choice": false
+	  },
+	  "reimbursement": {
+	      "title": "Delays in the reimbursement process",
+	      "description": "The reimbursement process for startups has been delayd due the high peak in paper work. This can cause some trouble on startups running lean on thight budget, but things should return to normal pretty soon.",
+	      "choice": false
+	  },
+	  "imports": {
+	      "title": "Changes in import law",
+	      "description": "Government is changing the policies regarding imported goods. Industries relying on imported goods will see an increase in their costs, but service sector should not be affected.",
+	      "choice": false
+	  },
+	  "exit": {
+	      "title": "1 billion exit done from your country",
+	      "description": "A starup from your country just confirmed a billion dollar exit. Unfortunately not yet from your incubator, but this event got a lot of media attention worldwide and also will increase the interest towards your incubator and assist the marketing efforts of your incubated companies.",
+	      "choice": false
+	  },
+	  "demo_day": {
+  	      "title": "Demo Day",
+  	      "description": "You organize a Demo Day to showcase your most prominent startups. This improves the reputation of your incubator and helps your startups to get feedback, learn and market their products.",
+  	      "choice": true,
+  	      "allow_string": "Yea let's do it and invite everyone! And spank our startups to do their best on stage.",
+  	      "deny_string": "Uhh, sounds like a hassle to organize",
+  	      "cost": 0
+  	  },
+  	  "richard_branson": {
+  	      "title": "Invite Richard Branson to visit your incubator",
+  	      "description": "Invite Sir Richard Branson to visity your incubator. Pay his expenses and mobilize your startup folks to do some guerilla marketing. This will surely have a positive effect on everything your incubator touches.",
+  	      "choice": true,
+  	      "allow_string": "Yeay, Branson's glory will save the day!",
+  	      "deny_string": "Nah, he'll pay to visit us soon...",
+  	      "cost": 0
+  	  },
+  	  "paul_graham": {
+  	      "title": "Invite Paul Graham to give a talk in your incubator",
+  	      "description": "Paul Graham could be interested to give a talk that would surely contribute to the technical skills and enthusiasm of your startups.",
+  	      "choice": true,
+  	      "allow_string": "Gimme Paul!",
+  	      "deny_string": "I'll think I'll just tell the juniors a trick of two myself.",
+  	      "cost": 0
+  	  },
+  	  "promote_international": {
+  	      "title": "Send one of your team to promote your incubator internationally",
+  	      "description": "There's a big startup event coming overseas and sending someone to promote your incubator could increase your reputation a lot and possibly result in more and better applications in the future.",
+  	      "choice": true,
+  	      "allow_string": "Sure! Let our message be heard.",
+  	      "deny_string": "The next billion dollar startup we're incubating will bring us all the reputation we need.",
+  	      "cost": 0
+  	  },
+  	  "promote_national": {
+  	      "title": "Participate in a local event to promote your incubator",
+  	      "description": "To get more applications from your country, you can send a promoter to upcoming event to increase your reputation in your home country.",
+  	      "choice": true,
+  	      "allow_string": "Yep, all publicity is good publicity.",
+  	      "deny_string": "Not this time.",
+  	      "cost": 0
+  	  },
+  	  "simplify_reimbursement": {
+  	      "title": "Simplify reimbursement process",
+  	      "description": "The reimbursement process is currently quite bureaucratic, and simplifying it could save startups time to do more productive work.",
+  	      "choice": true,
+  	      "allow_string": "Hu, my process? Well, maybe there's slightly room for improvement.. ",
+  	      "deny_string": "Nope, it will grow them up to fill a few papers.",
+  	      "cost": 0
+  	  },
+  	  "lecture_marketing": {
+  	      "title": "Lecture in marketing",
+  	      "description": "Organize a lecture with a marketing professional to teach some new stuff to your startups",
+  	      "choice": true,
+  	      "allow_string": "Sure",
+  	      "deny_string": "No",
+  	      "cost": 0
+  	  },
+  	  "lecture_technical": {
+  	      "title": "Lecture about technology",
+  	      "description": "This lecture has tips and trick especially for web startups, but helpful stuff for everyone's technical skills.",
+  	      "choice": true,
+  	      "allow_string": "Tech, yes",
+  	      "deny_string": "Techno",
+  	      "cost": 0
+  	  },
+  	  "lecture_finance": {
+  	      "title": "Finances lecture",
+  	      "description": "Get a finance professional teach your startups the essentials of keeping the finnances in order.",
+  	      "choice": true,
+  	      "allow_string": "Organize this",
+  	      "deny_string": "No thanks",
+  	      "cost": 0
+  	  }
+	},
 	"texts": {
 		"weather": {
 			"10": "Weather is really good",
@@ -365,7 +471,7 @@ var db = {
 			"1": "He has some interest to money, but usually ends up losing in any financial decisions",
 			"0": "He has no financial skills at all"
 		},
-		"empty_template_for_copy_paste": {				
+		"empty_template_for_copy_paste": {	
 			"10": "",
 			"9": "",
 			"8": "",
