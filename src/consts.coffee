@@ -19,4 +19,4 @@ C.advisor = {
   free_time:0.35
   years_of_experience: 0.4
 }
-indow.C = C
+window.C = C
