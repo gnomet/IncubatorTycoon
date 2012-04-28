@@ -39,7 +39,7 @@ C.industries_parameters = {
 }
 
 
-
+C.bankrupt = -20* C.base_value
 
 C.natural_disasters = ["earthquake","weather","audit", "reimbursement", "imports", "exit"]
 C.events = ["demo_day","richard_branson","paul_graham","promote_international","promote_national","simplify_reimbursement","lecture_marketing", "lecture_technical", "lecture_finance"]
