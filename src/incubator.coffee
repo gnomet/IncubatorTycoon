@@ -13,17 +13,17 @@ I.generate_incubator = () ->
 
 I.compute_individual_influence = (success_metric, industry, incub_parameters, type) ->
   ret = 0
-  if type is 'weather' then
+  if type is 'weather'
     ret = L.weather_impact(industry)*2 #depending on the industry, it's positive impact or negative impact
-  if type == 'weather' then
+  if type == 'weather'
     ret *= (incub_parameters['weather']-5) #depending on the value of the weather, we influence more or less
-  if type is 'culture_business' then
+  if type is 'culture_business'
     ret = incub_parameters.culture_business[industry] #take the value of the business in the industry
-  if type is 'university_network' then
+  if type is 'university_network'
     ret = incub_parameters.university_network[industry] #take the value of the business in the industry
-  if type is 'home_popularity' then
+  if type is 'home_popularity'
     ret = L.home_popularity_impact(incub_parameters.home_popularity) #take the value of the business in the industry
-  if type is 'world_popularity' then
+  if type is 'world_popularity'
     ret = L.world_popularity_impact(incub_parameters.world_popularity) #take the value of the business in the industry
 
   ret /= 10 #rescale the value of to interval 0-1
