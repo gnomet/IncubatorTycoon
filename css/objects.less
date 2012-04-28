@@ -1,10 +1,14 @@
 @game_height: 700px;
 @game_width: 1024px;
 
-@header_height: 50px;
+@header_height: 30px;
 @header_border_bottom_height: 1px;
 
 @chrome_background: #DDD;
+
+body {
+    background: #222222
+}
 
 .border_radius (@radius: 5px) {
   border-radius: @radius;
@@ -20,9 +24,15 @@
     margin-top: @game_height / -2;
     height: @game_height;
     width: @game_width;
-    border: 1px black solid;
+    border: 3px #444 solid;
     .border_radius();
     overflow: hidden;
+
+    -moz-box-shadow: 0 0 10px #888;
+    -webkit-box-shadow: 0 0 10px#888;
+    box-shadow: 0 0 10px #888;
+
+
 
     #header {
         position: absolute;
@@ -40,6 +50,7 @@
         height: @game_height - @header_height;
         padding: 5px;
         background: #EEEEEE;
+        border-top: 1px #DDD solid;
     }
 
     .box {
@@ -94,8 +105,9 @@ mustache {
     dt {
         font-weight: bold;
         float: left;
-        width: 100px;
+        width: 250px;
         text-align: right;
+        padding-right: 10px;
     }
     dl {
 

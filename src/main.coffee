@@ -18,3 +18,4 @@ console.log({ a: L.random_int(3) for a in ["hello", "goodbye"]})
 #    generate_startup()
 
 console.log()
+coffeescript_ready()
