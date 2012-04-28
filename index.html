@@ -1,78 +1,112 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-<meta charset=utf-8>
-<title>Incubator Tycoon</title>
-    <script type="text/coffeescript" src="src/consts.coffee"></script>
-    <script type="text/coffeescript" src="src/lib.coffee"></script>
-    <script type="text/coffeescript" src="src/advisors.coffee"></script>
-    <script type="text/coffeescript" src="src/environment.coffee"></script>
-    <script type="text/coffeescript" src="src/incubator.coffee"></script>
-    <script type="text/coffeescript" src="src/startup.coffee"></script>
-    <script type="text/coffeescript" src="src/main.coffee"></script>
-    <script type="text/javascript" src="src/coffee-script.js"></script>
-<style>
-header, nav, article, footer, address, section {
- display: block;
-}
-#container {
- width:900px;
- margin:auto;
- background-color:white;
-}
-header {
- background-color:#666;
-}
-nav li {
- display:inline;
- padding-right:1em;
-}
-nav a {
- color:white;
- text-decoration:none; 
-}
-nav a:hover {
- text-decoration:overline; 
-}
-h1, h2 {
- margin:0px;
- font-size:1.5em;
-}
-h2 {
- font-size:1em;
-}
-footer {
- background-color:#999;
- text-align:center;
-}
-</style>
-<script>
-document.createElement("article"); 
-document.createElement("footer"); 
-document.createElement("header"); 
-document.createElement("nav");
-</script>
+    <meta charset="utf-8">
 
+    <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/i/378 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title></title>
+    <meta name="description" content="">
+
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet/less" type="text/css" href="css/objects.less">
+
+    <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+    <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+    <script src="js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
-<div id="container">
+    <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
     <header>
-     <h1>Incubator Tycoon</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Game</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-        </nav>
+
     </header>
-    <section>
-      <div id="game">
-        Here will be the Game 
-      </div>
-    </section>
+    <div role="main">
+        <div id="game_area">
+            <div id="header">
+            </div>
+            <div id="box_placement_area">
+
+            </div>
+        </div>
+    </div>
     <footer>
-     <p>Footer</p>
+
     </footer>
-</div>
+
+
+    <!-- MUSTACHES! -->
+    <mustache title="box">
+        <div class="box" style="width: {{#width}}{{width}}px{{/width}}{{^width}}100%{{/width}}; height:{{#height}}{{height}}px{{/height}}{{^height}}100%{{/height}}px;">
+            <div class="box_header">Sup</div>
+            <div class="box_content">Dawg</div>
+        </div>
+    </mustache>
+    <mustache title="header">
+        <span class="name">{{name}}</span> - <span class="location">{{location}}</span><span class="cash_on_hand">{{cash_available}}</span><span class="cash_invested">{{cash_invested}}l</span>
+    </mustache>
+    <mustache title="city_select">
+        <div class="cities"></div>
+        <div class="city_details">
+            Select a city to see more about it
+        </div>
+    </mustache>
+    <mustache title="city">
+        <div class="city">
+            <img src="img/cities/{{image}}.jpg" />
+            <span>{{city}}</span>
+        </div>
+    </mustache>
+    <mustache title="city_description">
+        <dl>
+            <dt>Location</dt><dd>{{location_description}}</dd>
+            <dt>Agriculture</dt><<dd>{{agriculture_description}}</dd>
+            <dt>Hardware</dt><dd>{{hardware_description}}</dd>
+            <dt>Health</dt><dd>{{health_description</dd>
+            <dt>Buzzword Compliance</dt><dd>{{buzzword_description}}</dd>
+            <dt>Cost of Living</dt><dd>{{col_description</dd>
+            <dt>Universities</dt><dd>{{university_description}}</dd>
+            <dt>Incubator Reputation</dt><dd>{{reputation_description}}</dd>
+        </dl>
+        <div id="select_city">Incubate here</div>
+    </mustache>
+
+    <!-- JavaScript at the bottom for fast page loading -->
+
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+    <!-- scripts concatenated and minified via build script -->
+    <script src="js/plugins.js"></script>
+    <script src="js/libs/less-1.3.0.min.js"></script>
+    <script src="js/libs/icanhas.js"></script>
+    <script src="js/GameController.js"></script>
+    <script src="js/elements.js"></script>
+    <script src="js/script.js"></script>
+    <!-- end scripts -->
+    
+    <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+    <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
 </body>
 </html>
