@@ -1,0 +1,63 @@
+@game_height: 700px;
+@game_width: 1024px;
+
+@header_height: 50px;
+@header_border_bottom_height: 1px;
+
+@chrome_background: #DDD;
+
+.border_radius (@radius: 5px) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+#game_area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: @game_width / -2;
+    margin-top: @game_height / -2;
+    height: @game_height;
+    width: @game_width;
+    border: 1px black solid;
+    .border_radius();
+    overflow: hidden;
+
+    #header {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: @header_height;
+        border-bottom: 1px black solid;
+        background: @chrome_background;
+    }
+
+    #box_placement_area {
+        position: absolute;
+        top: @header_height + @header_border_bottom_height;
+        width: 100%;
+        height: @game_height - @header_height;
+        padding: 5px;
+        background: #EEEEEE;
+    }
+
+    .box {
+        border: 1px black solid;
+        background: @chrome_background;
+        padding: 5px;
+
+        .box_header {
+            height: 10px;
+        }
+
+        .box_content {
+            background-color: #EEE;
+            border: 1px solid black;
+        }
+    }
+}
+
+mustache {
+    display: none;
+}
