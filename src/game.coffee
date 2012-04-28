@@ -17,7 +17,6 @@ G.init_round = (incubator) ->
   G.accepting_applications = false
   G.get_advisors()
 
-
 G.get_applications = (count) ->
   G.startup_applications = [S.generate_startup() for i in [0..count]]
 
@@ -77,6 +76,9 @@ G.next_month = () ->
       startup.success += A.compute_advisor_influence(G.advisors[startup.advisor], startup)
     #add the influence of the incubator
     startup.success += I.compute_incubator_influence(G.incubator, startup)
+    S.burn_startup(startup) #compute profits
+    S.develop_startup(startup) #update skills
+  G.get_advisors()
 
 
   # Startups learn
