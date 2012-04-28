@@ -34,3 +34,5 @@ G.next_month = () ->
 G.trigger_event = ( event ) ->
 
 window.G = G
+
+coffeescript_ready() # because this is the last js file
