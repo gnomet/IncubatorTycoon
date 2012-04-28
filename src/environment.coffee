@@ -21,7 +21,7 @@ all values with a * are a multiplier
 
 """
 E.select_natural_disaster = () ->
-  selected = L.random_int(C.natural_disasters.length -1)
+  selected = L.random_int(C.natural_disasters.length-1)
   happens = L.random_int(1)
   if happens > 0 #selected event happens
     return C.natural_disasters[selected]
@@ -77,8 +77,8 @@ E.buy_event = (event, incubator, teams_list) ->
     if event is C.events[0]
       #demo day: influences all industries + 10%
       for industry in C.industries_parameters
-      for key, value of industry
-        value = 1.1*value
+        for key, value of industry
+          value = 1.1*value
     if event is C.events[1]
       #richard branson visits & talks about marketing: influences all marketing skills + 20%
       for startup in teams_list
@@ -124,7 +124,10 @@ E.buy_event = (event, incubator, teams_list) ->
 
 E.test = () ->
   incubator = I.generate_incubator()
-  teams_list = [S.generate_startup() for i in [1..3]]
+  teams_list = []
+  for i in [1]
+    sta = S.generate_startup()
+    teams_list.append(sta)
   disaster = E.select_natural_disaster()
   if disaster is C.natural_disasters[1]
     console.log('incubator parameters before: ', incubator)
@@ -132,10 +135,12 @@ E.test = () ->
     console.log('industries parameters before: ', C.industries_parameters)
   console.log('teams stats before')
   for startup in teams_list
-    console.log(startup.to_string())
-    infl = I.compute_incubator_influence(startup.status,startup.industry,incubator)
-    console.log('final status', )
+    console.log(startup)
+    console.log(startup.team)
 
+    console.log(S.to_string(startup))
+    infl = I.compute_incubator_influence(startup.status,startup.industry,incubator)
+    console.log('final status', startup.status+infl)
   console.log('disaster occuring: ', disaster)
   E.disaster_occurs(disaster, incubator)
   if disaster is C.natural_disasters[1]
@@ -144,9 +149,16 @@ E.test = () ->
     console.log('industries parameters after: ', C.industries_parameters)
   console.log('teams stats after')
   for startup in teams_list
-    console.log(startup.to_string())
+    console.log(S.to_string(startup))
+    infl = I.compute_incubator_influence(startup.status,startup.industry,incubator)
+    console.log('final status', startup.status+infl)
 
-      #E.apply_environment_to_startup = (environment, startup) ->
+
+E.test2 = () ->
+  sta = S.generate_startup()
+  console.log(sta)
+  console.log(sta.team)
+#E.apply_environment_to_startup = (environment, startup) ->
 #  if environment.team_fit? then startup.team_fit *= environment.team_fit
 #  if environment.cash? then startup.cash += environment.cash
 #  if environment.burn_rate? then startup.burn_rate += environment.burn_rate
