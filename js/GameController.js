@@ -17,6 +17,11 @@ var GameController = (function(){
         $("#box_placement_area").empty().append($elem);
     }
 
+    self.pop_over = function($elem){
+        $("#box_placement_area").append($elem);
+        $elem.show();
+        $("#greyout").fadeIn(100);
+    }
 
     return self;
 })();

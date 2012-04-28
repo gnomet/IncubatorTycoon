@@ -13,16 +13,16 @@ body {
     background: #222222
 }
 
-.border_radius (@radius: 5px) {
+.border_radius(@radius: 5px) {
   border-radius: @radius;
   -moz-border-radius: @radius;
   -webkit-border-radius: @radius;
 }
 
-.slight_shadow(){
-    -moz-box-shadow: 0 0 3px #888;
-    -webkit-box-shadow: 0 0 3px#888;
-    box-shadow: 0 0 3px #888;
+.drop_shadow(@size: 3px){
+    -moz-box-shadow: 0 0 @size #888;
+    -webkit-box-shadow: 0 0 @size #888;
+    box-shadow: 0 0 @size #888;
 }
 
 .text_glow(){
@@ -109,7 +109,7 @@ mustache {
         padding-right: 10px;
     }
     dl {
-
+        margin: 0px;
     }
 }
 
@@ -129,7 +129,7 @@ mustache {
     color: #FFF;
     font-size: 1.5em;
     border: 2px #222 solid;
-    .slight_shadow();
+    .drop_shadow();
     cursor: pointer;
     position: absolute;
     bottom: 40px;
@@ -143,7 +143,7 @@ mustache {
     padding: 3px;
     border: 2px #222 solid;
     margin: 4px;
-    .slight_shadow();
+    .drop_shadow();
     cursor: pointer;
     h4 {
         padding: 2px;
@@ -155,4 +155,63 @@ mustache {
     background-color: @color_selected;
     color: #fff;
     .text_glow();
+}
+
+.popup {
+    background-color: #EEE;
+    .drop_shadow(10px);
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    top: @game_height / 2;
+    left: @game_width / 2;
+    margin-left: -200px;
+    margin-top: -100px;
+    padding: 5px;
+    border: 1px black solid;
+    z-index: 9001;
+
+    .options_holder {
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+        width: 100%;
+
+        .accept {
+            background-color: @color_selected;
+            display: inline;
+            margin-right: 20px;
+            padding: 10px;
+            .drop_shadow();
+            .text_glow();
+            color: #fff;
+            font-weight: bold;
+            border: 1px black solid;
+        }
+
+        .deny {
+            background-color: @color_highlight;
+            display: inline;
+            margin-right: 20px;
+            padding: 10px;
+            .drop_shadow();
+            .text_glow();
+            color: #fff;
+            font-weight: bold;
+            border: 1px black solid;
+        }
+    }
+}
+
+#greyout{
+    width: @game_width;
+    height: @game_height;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 9000;
+    background-color: #000;
+    opacity:0.4;
+    filter:alpha(opacity=40);
+    display: none;
 }

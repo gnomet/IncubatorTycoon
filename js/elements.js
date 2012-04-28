@@ -17,7 +17,7 @@ function $box(dimensions){
 
 function $start_screen(){
     var self = {};
-    var $elem = null;
+    var $elem = $("<div></div>");;
     make_elem();
     return $elem;
 
@@ -35,13 +35,14 @@ function $start_screen(){
             city.data.business.health = L.textify("business_health", city.data.business.health)
             city.data.business.hardware = L.textify("business_hardware", city.data.business.hardware)
             city.data.business.web = L.textify("business_web", city.data.business.web)
-						
+
             var $city = ich.city(city);
 
             $city.bind("click", function(){
                 var $description = ich.city_description(city);
                 $elem.find(".city_details").html($description);
-                $elem.find(".select_city").bind("click", function(){
+
+                $elem.find(".ready_button").bind("click", function(e){
                     $elem.hide();
                     GameController.manage_incubator.trigger("new_season");
                 });
@@ -57,6 +58,7 @@ function $start_screen(){
 
 function $manage_incubator(){
     var self = {};
+    var $elem = $("<div></div>");
 
     make_elem();
     return $elem;
@@ -73,22 +75,29 @@ function $manage_incubator(){
             {
                 selected: "selected",
                 title: "Sup",
-                tagline: "niggaz"
+                tagline: "niggaz",
+                accept_text: "Yo",
+                deny_text: "No"
             },
             {
                 title: "Sup",
-                tagline: "niggaz"
+                tagline: "niggaz",
+                accept_text: "Yo",
+                deny_text: "No"
             },
             {
                 title: "Sup",
-                tagline: "niggaz"
+                tagline: "niggaz",
+                accept_text: "Yo",
+                deny_text: "No"
             }
         ];
 
         $(events).each(function(){
             var $li = ich.list_entry(this);
+            raw_this = this;
             $li.bind("click", function(){
-                GameController.event.trigger("manual_event", this);
+                GameController.event.trigger("manual_event", raw_this);
             });
             $elem.find(".event_list").append($li);
         });
@@ -99,13 +108,44 @@ function $manage_incubator(){
         //Get list of advisors
         var advisors = {};
 
+        $elem.append('<div class="ready_button">Next</div>');
+        $elem.find(".ready_button").bind("click", function(){
+            GameController.run_simuation.trigger("run_simulation");
+        });
+        console.log("Done");
     }
-
-
-
 
     function overlay_in_season(){
 
+    }
+}
+
+function $event(){
+    var self = {};
+    var $elem = $("<div></div>");
+    make_elem();
+    return $elem;
+
+    function manual_event(e, the_event){
+        $elem.find("h2").text(the_event.title);
+        $elem.find(".description").text(the_event.description);
+        console.log(the_event);
+        $elem.find(".accept").text(the_event.accept_text).bind("click", function(){
+            $elem.fadeOut(100);
+            $("#greyout").fadeOut(100);
+        }); //DO SOMETHING WITH IT HERE
+        $elem.find(".deny").text(the_event.deny_text).bind("click", function(){
+            $elem.fadeOut(100);
+            $("#greyout").fadeOut(100);
+        });
+
+        GameController.pop_over($elem);
+    }
+
+
+    function make_elem(){
+        $elem = ich.event_popup();
+        $elem.bind("manual_event", manual_event);
     }
 }
 
@@ -130,6 +170,7 @@ function $results(){
 
     }
 }
+
 function $startup_details(){
 
     function show_startup(){
@@ -139,12 +180,6 @@ function $startup_details(){
 function $agent_details(){
 
     function show_agent(){
-
-    }
-}
-function $event(){
-
-    function manual_event(){
 
     }
 }
