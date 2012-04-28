@@ -53,7 +53,7 @@ var db = {
                 }
             }},{
             "name": "Singapore",
-						"image": "singapore.jpg",
+			"image": "singapore.jpg",
             "data": {
                 "weather": 9,
                 "cost_of_living": 3,
