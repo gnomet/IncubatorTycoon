@@ -8,5 +8,9 @@ var GameController = (function(){
         }
     };
 
+    self.start_game = function(){
+        $("#box_placement_area").append($start_screen())
+    };
 
+    return self;
 })();

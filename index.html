@@ -51,9 +51,9 @@
 
     <!-- MUSTACHES! -->
     <mustache title="box">
-        <div class="box" style="width: {{#width}}{{width}}px{{/width}}{{^width}}100%{{/width}}; height:{{#height}}{{height}}px{{/height}}{{^height}}100%{{/height}}px;">
-            <div class="box_header">Sup</div>
-            <div class="box_content">Dawg</div>
+        <div class="box" style="width: {{#width}}{{width}}px{{/width}}; height:{{#height}}{{height}}px{{/height}};">
+            <div class="box_header"></div>
+            <div class="box_content"></div>
         </div>
     </mustache>
     <mustache title="header">
@@ -61,26 +61,29 @@
     </mustache>
     <mustache title="city_select">
         <div class="cities"></div>
+        <div class="clear">&nbsp;</div>
         <div class="city_details">
             Select a city to see more about it
         </div>
     </mustache>
     <mustache title="city">
         <div class="city">
-            <img src="img/cities/{{image}}.jpg" />
-            <span>{{city}}</span>
+            <img src="img/cities/{{image}}" />
+            <span>{{name}}</span>
         </div>
     </mustache>
     <mustache title="city_description">
         <dl>
-            <dt>Location</dt><dd>{{location_description}}</dd>
-            <dt>Agriculture</dt><<dd>{{agriculture_description}}</dd>
-            <dt>Hardware</dt><dd>{{hardware_description}}</dd>
-            <dt>Health</dt><dd>{{health_description</dd>
-            <dt>Buzzword Compliance</dt><dd>{{buzzword_description}}</dd>
-            <dt>Cost of Living</dt><dd>{{col_description</dd>
-            <dt>Universities</dt><dd>{{university_description}}</dd>
-            <dt>Incubator Reputation</dt><dd>{{reputation_description}}</dd>
+            <dt>Location</dt><dd>{{name}}</dd>
+            <dt>Agriculture</dt><dd>{{data.business.agriculture}}</dd>
+            <dt>Hardware</dt><dd>{{data.business.hardware}}</dd>
+            <dt>Health</dt><dd>{{data.business.health}}</dd>
+            <dt>Buzzword Compliance</dt><dd>{{data.business.web}}</dd>
+            <dt>Cost of Living</dt><dd>{{data.cost_of_living}}</dd>
+            <dt>Tech Universities</dt><dd>{{data.universities.tech}}</dd>
+            <dt>Marketing Universities</dt><dd>{{data.universities.tech}}</dd>
+            <dt>Finance Universities</dt><dd>{{data.universities.finance}}</dd>
+            <dt>Weather</dt><dd>{{data.weather}}</dd>
         </dl>
         <div id="select_city">Incubate here</div>
     </mustache>
@@ -106,6 +109,7 @@
     <script src="js/libs/icanhas.js"></script>
     <script src="js/GameController.js"></script>
     <script src="js/elements.js"></script>
+    <script src="js/db.js"></script>
     <script src="js/script.js"></script>
     <!-- end scripts -->
     

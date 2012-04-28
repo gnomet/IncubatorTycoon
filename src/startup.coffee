@@ -1,14 +1,16 @@
-random_team = (max_members =3) ->
+S={}
+
+S.random_team = (max_members =3) ->
   i = 0
   max_members = random_int(max_members)
   while i < max_members
     i++
     L.sector_values(C.all_skills)
 
-generate_startup = () ->
+S.generate_startup = () ->
   ret =
     team_fit: random_int(10)
-    team: random_team()
+    team: S.random_team()
     business_cost: random_int(10)
     burn_rate: random_int(10) * C.burn_basis
     cash: random_int(5) * C.cash_basis
@@ -33,13 +35,13 @@ generate_startup = () ->
   ret.industry = industry
   ret.project_requirements = industries[ industry ]
 
-  ret.status = startup_matchup(ret) * C.starting_match_bias
+  ret.status = S.startup_matchup(ret) * C.starting_match_bias
   ret.status -= L.random_int(C.possible_starting_deficit)
 
   return ret
 
 
-startup_matchup = (startup) ->
+S.startup_matchup = (startup) ->
   team_skills = {}
   for member in startup.team
     for skill, level of member
@@ -52,12 +54,12 @@ startup_matchup = (startup) ->
 
   return match
 
-develop_startup = (startup) ->
-  current_match = startup_matchup(startup)
+S.develop_startup = (startup) ->
+  current_match = S.startup_matchup(startup)
   startup.status += current_match * C.development_factor * startup.team_fit * 0.1
   return startup
 
-burn_startup = (startup) ->
+S.burn_startup = (startup) ->
   burn_fraction = startup.burn_rate/5
   profit = startup.status - 5
   profit *= burn_fraction
@@ -65,7 +67,7 @@ burn_startup = (startup) ->
   return startup
 
 
-
+window.S = S
 
 
 
