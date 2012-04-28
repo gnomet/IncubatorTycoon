@@ -38,10 +38,12 @@ I.compute_incubator_influence = (success_metric, industry, incub_parameters) ->
   return ret
 
 window.I = I
-"""test = () ->
-  culture_business = sector_culture_business()
-  total_culture = 0
 
-
-
-test()"""
+incubator_unit_test = () ->
+  success_metric = random_int(10)
+  industry = C.all_industries[random_int(C.all_industries.length-1)]
+  console.log('industry is ',industry)
+  incub = I.generate_incubator()
+  console.log('incubator parameters are ', incub)
+  infl = I.compute_incubator_influence(success_metric,industry,incub)
+  console.log('influence is ', infl)
