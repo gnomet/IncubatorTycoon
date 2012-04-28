@@ -47,4 +47,19 @@ L.generate_random_slogan = () ->
   surroundings_i = L.random_int(11)
   return  db.slogan_parts.surroundings[surroundings_i][0] + " " + db.slogan_parts.first[first_i] +  " " + db.slogan_parts.surroundings[surroundings_i][1] + " " + db.slogan_parts.last[last_i]
 
+# From: http://www.mredkj.com/javascript/numberFormat.html#addcommas
+L.formatted_number = (nStr) ->
+  nStr += ''
+  x = nStr.split('.')
+  x1 = x[0]
+  if x.length > 1
+    x2 = '.' + x[1]
+  else
+    x2 = ''
+  #x2 = (x.length > 1 ? ('.' + x[1]) : '')
+  rgx = /(\d+)(\d{3})/
+  while rgx.test(x1)
+    x1 = x1.replace(rgx, '$1' + ',' + '$2')
+  return "$" + x1 + x2
+  
 window.L = L

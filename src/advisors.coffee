@@ -26,7 +26,7 @@ A.generate_advisor = () ->
 A.compute_advisor_influence = (advisor, startup) ->
   #returns the hard number of the value the advisor adds to the success_value of the startup
   ref = 0
-  advised_startup = startup
+  advised_startup = $.clone(startup)
   stats = {}
   for skill in C.all_skills
     stats[skill] = 0
