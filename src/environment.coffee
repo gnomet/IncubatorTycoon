@@ -26,7 +26,7 @@ E.select_natural_disaster = () ->
   if happens > 0 #selected event happens
     return C.natural_disasters[selected]
   else
-    return "None"
+    return null
 
 E.disaster_occurs = (disaster, incubator) ->
   if disaster is C.natural_disasters[0]
