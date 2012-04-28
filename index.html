@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset=utf-8>
+<title>Incubator Tycoon</title>
+<style>
+header, nav, article, footer, address, section {
+ display: block;
+}
+#container {
+ width:900px;
+ margin:auto;
+ background-color:white;
+}
+header {
+ background-color:#666;
+}
+nav li {
+ display:inline;
+ padding-right:1em;
+}
+nav a {
+ color:white;
+ text-decoration:none; 
+}
+nav a:hover {
+ text-decoration:overline; 
+}
+h1, h2 {
+ margin:0px;
+ font-size:1.5em;
+}
+h2 {
+ font-size:1em;
+}
+footer {
+ background-color:#999;
+ text-align:center;
+}
+</style>
+<script>
+document.createElement("article"); 
+document.createElement("footer"); 
+document.createElement("header"); 
+document.createElement("nav");
+</script>
+<script src="lib/hello.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container">
+    <header>
+     <h1>Incubator Tycoon</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Game</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+      <div id="game">
+        Here will be the Game 
+      </div>
+    </section>
+    <footer>
+     <p>Footer</p>
+    </footer>
+</div>
+</body>
+</html>
