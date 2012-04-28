@@ -26,14 +26,14 @@ E.select_natural_disaster = () ->
   if happens > 0 #selected event happens
     return C.natural_disasters[selected]
   else
-    return "None"
+    return null
 
 E.disaster_occurs = (disaster, incubator) ->
   if disaster is C.natural_disasters[0]
   #earthquake = -20% on all values in C.industries_parameters. i.e. market shrinks
-    for industry in C.industries_parameters
-      for key, value of industry
-        value = 0.8*value
+    for industry,params of C.industries_parameters
+      for key,value of params
+        params[key] *= 0.8
   if disaster is C.natural_disasters[1]
   #weather = can change by +2 or -2
     change = L.random_int(1)
@@ -45,29 +45,36 @@ E.disaster_occurs = (disaster, incubator) ->
       incubator.weather = Math.max(incubator.weather,0)#limit the weather to 10
   if disaster is C.natural_disasters[2]
   #audit = influences:agriculture +0.1*value, health +0.1*value, web social -0.5*value
-    for skill,value of C.industries_parameters[C.all_industries[0]]
-      value += 0.1*value
-    for skill,value of C.industries_parameters[C.all_industries[2]]
-      value += 0.1*value
-    for skill,value of C.industries_parameters[C.all_industries[3]]
-      value -= 0.5*value
+    industry = C.industries_parameters[C.all_industries[0]]
+    for skill,value of industry
+      industry[skill] *= 1.1
+    industry = C.industries_parameters[C.all_industries[2]]
+    for skill,value of industry
+      industry[skill] *= 1.1
+    industry = C.industries_parameters[C.all_industries[3]]
+    for skill,value of industry
+      industry[skill] *= 0.5
   if disaster is C.natural_disasters[3]
     #reimbursement delay = influences: web social -0.5*, hardware -0.5*
-    for skill,value of C.industries_parameters[C.all_industries[1]]
-      value -= 0.5*value
-    for skill,value of C.industries_parameters[C.all_industries[3]]
-      value -= 0.5*value
+    industry = C.industries_parameters[C.all_industries[1]]
+    for skill,value of industry
+      industry[skill] *= 0.5
+    industry = C.industries_parameters[C.all_industries[3]]
+    for skill,value of industry
+      industry[skill] *= 0.5
   if disaster is C.natural_disasters[4]
     #imports policy = influences: agriculture -0.5*, hardware badly -0.25*
-    for skill,value of C.industries_parameters[C.all_industries[0]]
-      value -= 0.5*value
-    for skill,value of C.industries_parameters[C.all_industries[1]]
-      value -= 0.25*value
+    industry = C.industries_parameters[C.all_industries[0]]
+    for skill,value of industry
+      industry[skill] *= 0.5
+    industry = C.industries_parameters[C.all_industries[1]]
+    for skill,value of industry
+      industry[skill] *= 0.75
   if disaster is C.natural_disasters[5]
     #successful exit of startup from this city = influences: all +20%
-    for industry in C.industries_parameters
-      for key, value of industry
-        value = 1.2*value
+    for industry,params of C.industries_parameters
+      for key,value of params
+        params[key] *= 1.2
 
 E.buy_event = (event, incubator, teams_list) ->
   #first, let's see if we have the money:
@@ -122,24 +129,22 @@ E.buy_event = (event, incubator, teams_list) ->
           member[C.all_skills[2]] += 1
           member[C.all_skills[2]] = Math.min(10,member[C.all_skills[2]]) #let's keep it within limits
 
-E.test = () ->
+E.unit_test_natural_disasters = () ->
   incubator = I.generate_incubator()
   teams_list = []
   for i in [1]
     sta = S.generate_startup()
-    teams_list.append(sta)
+    teams_list.push(sta)
   disaster = E.select_natural_disaster()
+  #disaster = C.natural_disasters[1]
   if disaster is C.natural_disasters[1]
     console.log('incubator parameters before: ', incubator)
   else
     console.log('industries parameters before: ', C.industries_parameters)
   console.log('teams stats before')
   for startup in teams_list
-    console.log(startup)
-    console.log(startup.team)
-
     console.log(S.to_string(startup))
-    infl = I.compute_incubator_influence(startup.status,startup.industry,incubator)
+    infl = I.compute_incubator_influence(S.startup_matchup(startup),startup.industry,incubator)
     console.log('final status', startup.status+infl)
   console.log('disaster occuring: ', disaster)
   E.disaster_occurs(disaster, incubator)
@@ -147,17 +152,42 @@ E.test = () ->
     console.log('incubator parameters after: ', incubator)
   else
     console.log('industries parameters after: ', C.industries_parameters)
+    for startup in teams_list
+      S.update_success(startup)
   console.log('teams stats after')
   for startup in teams_list
     console.log(S.to_string(startup))
-    infl = I.compute_incubator_influence(startup.status,startup.industry,incubator)
+    infl = I.compute_incubator_influence(S.startup_matchup(startup),startup.industry,incubator)
+    console.log('final status', startup.status+infl)
+
+E.test = () ->
+  incubator = I.generate_incubator()
+  teams_list = []
+  for i in [1]
+    sta = S.generate_startup()
+    teams_list.push(sta)
+  event = C.events[0]
+  #disaster = C.natural_disasters[1]
+  console.log('incubator before: ', incubator)
+  console.log('industries parameters before: ', C.industries_parameters)
+  console.log('teams stats before')
+  for startup in teams_list
+    console.log(S.to_string(startup))
+    infl = I.compute_incubator_influence(S.startup_matchup(startup),startup.industry,incubator)
+    console.log('final status', startup.status+infl)
+  console.log('event bought: ', event)
+  E.buy_event(event, incubator, teams_list)
+  console.log('incubator parameters after: ', incubator)
+  console.log('industries parameters after: ', C.industries_parameters)
+  for startup in teams_list
+    S.update_success(startup)
+  console.log('teams stats after')
+  for startup in teams_list
+    console.log(S.to_string(startup))
+    infl = I.compute_incubator_influence(S.startup_matchup(startup),startup.industry,incubator)
     console.log('final status', startup.status+infl)
 
 
-E.test2 = () ->
-  sta = S.generate_startup()
-  console.log(sta)
-  console.log(sta.team)
 #E.apply_environment_to_startup = (environment, startup) ->
 #  if environment.team_fit? then startup.team_fit *= environment.team_fit
 #  if environment.cash? then startup.cash += environment.cash

@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="column grid_12 city_details">
+            <div class="column grid_12 city_details description_list">
                 Choose a city above a the location for your new incubator.  Each city has its own pro's and con's,
                 and you can't move it once you've started!
             </div>
@@ -124,6 +124,18 @@
 
     </mustache>
     
+    <mustache title="run_simulation">
+        <div class="row">
+            <div class="column grid_12">
+                <h3 class="to_center">Startups in your Incubator</h3>
+                <div class="startup_list">
+                    List of startups here
+                </div>
+            </div>
+        </div>
+
+    </mustache>
+    
     <mustache title="results">
         <div class="row">
             <div class="column grid_12">
@@ -134,7 +146,7 @@
             <div class="column grid_4">
                 <img src="img/cities/{{image}}" />
             </div>
-            <div class="column grid_8">
+            <div class="column grid_8 description_list">
                 <dl>
                     <dt>Startups incubated:</dt><dd>{{number_of_startups}}</dd>
                     <dt>Incubated startups profitable:</dt><dd>{{profitable_startups}}</dd>
@@ -183,7 +195,7 @@
     <script type="text/coffeescript" src="src/environment.coffee"></script>
     <script type="text/coffeescript" src="src/incubator.coffee"></script>
     <script type="text/coffeescript" src="src/startup.coffee"></script>
-    <script type="text/coffeescript" src="src/main.coffee"></script>
+    <script type="text/coffeescript" src="src/game.coffee"></script>
 
 
     <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
