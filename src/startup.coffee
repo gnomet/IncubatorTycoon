@@ -104,7 +104,7 @@ S.develop_startup = (startup) ->
 S.update_success = (startup) ->
   startup.status = S.startup_matchup(startup) + startup.deficit
 
-S.burn_startup = (startup) ->
+S.burn_startup = (startup, incubator) ->
   if startup.status > 0
     burn_fraction = startup.burn_rate/5
     profit = startup.status - 5
@@ -112,7 +112,8 @@ S.burn_startup = (startup) ->
   else
     profit = -startup.burn_rate
   startup.cash += profit
-  console.log('burned ', profit)
+  living_costs = startup.team.length*incubator.living_cost
+  startup.cash -= living_costs
   return startup
 
 S.to_string = (startup) ->
@@ -148,6 +149,7 @@ S.to_string = (startup) ->
   return str
 
 S.unit_test = () ->
+  incubator = I.generate_incubator()
   startup = S.generate_startup()
   console.log('startup is ', S.to_string(startup))
   #console.log('success is ',startup.status)
@@ -161,7 +163,7 @@ S.progress_test = () ->
   console.log('startup is initially', S.to_string(startup))
   for i in [1,2,3,4,5,6]
      startup = S.develop_startup(startup)
-     startup = S.burn_startup(startup)
+     startup = S.burn_startup(startup,incubator)
   console.log('startup is after 6 months', S.to_string(startup))
 
 window.S = S

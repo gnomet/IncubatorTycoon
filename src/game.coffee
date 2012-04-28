@@ -64,6 +64,20 @@ G.pay_advisors = () ->
     else
       G.fire_advisor(i)
 
+G.bankrupt_startups = () ->
+  i = 0
+  while i < G.startups.length
+    if G.startups[i].cash <= C.bankrupt
+      G.bankrupt_startup(i)
+    else
+      i +=1
+
+G.bankrupt_startup = (index) ->
+  startup = G.startups[index]
+  if startup.advisor != -1
+    advisor = G.advisors[startup.advisor]
+    advisor.startup = -1
+  G.startups.pop(index)
 
 G.next_month = () ->
   natural_disaster = E.select_natural_disaster()
@@ -76,9 +90,11 @@ G.next_month = () ->
       startup.success += A.compute_advisor_influence(G.advisors[startup.advisor], startup)
     #add the influence of the incubator
     startup.success += I.compute_incubator_influence(G.incubator, startup)
-    S.burn_startup(startup) #compute profits
+    S.burn_startup(startup, G.incubator) #compute profits
     S.develop_startup(startup) #update skills
+  G.bankrupt_startups()
   G.get_advisors()
+  G.get_possible_events()
 
 
   # Startups learn
