@@ -37,9 +37,7 @@ I.compute_incubator_influence = (success_metric, industry, incub_parameters) ->
   ret += compute_individual_influence(success_metric, industry, incub_parameters, key) for key,value in incub_parameters
   return ret
 
-window.I = I
-
-incubator_unit_test = () ->
+I.incubator_unit_test = () ->
   success_metric = random_int(10)
   industry = C.all_industries[random_int(C.all_industries.length-1)]
   console.log('industry is ',industry)
@@ -47,3 +45,6 @@ incubator_unit_test = () ->
   console.log('incubator parameters are ', incub)
   infl = I.compute_incubator_influence(success_metric,industry,incub)
   console.log('influence is ', infl)
+
+window.I = I
+
