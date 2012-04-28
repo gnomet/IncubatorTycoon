@@ -35,10 +35,14 @@ I.compute_individual_influence = (success_metric, industry, incub_parameters, ty
 I.compute_incubator_influence = (success_metric, industry, incub_parameters) ->
   #returns the hard value of the influence of the incubator's parameters
   ret = 0
-  ret += compute_individual_influence(success_metric, industry, incub_parameters, key) for key,value in incub_parameters
+  for key,value of incub_parameters
+    #console.log('key is ',key, ' value is ', value)
+    temp = I.compute_individual_influence(success_metric, industry, incub_parameters, key)
+    ret += temp
+    #console.log('current modification ',temp)
   return ret
 
-I.incubator_unit_test = () ->
+I.unit_test = () ->
   success_metric = L.random_int(10)
   console.log('success is ',success_metric)
   industry = C.all_industries[L.random_int(C.all_industries.length-1)]

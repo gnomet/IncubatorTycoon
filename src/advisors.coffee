@@ -2,8 +2,8 @@ A = {}
 A.generate_advisor = () ->
   ret = {
     skill_knowledge : L.sector_values(C.all_skills)
-    free_time: L.random_int(10)
-    years_of_experience: L.random_int(10)
+    free_time: Math.max(1,L.random_int(10))
+    years_of_experience: Math.max(1,L.random_int(10))
   }
   total_knowledge = 0
   total_knowledge += val for industry,val of ret.skill_knowledge
@@ -31,20 +31,18 @@ A.compute_advisor_influence = (advisor, startup) ->
       temp /= 10 #rescale the skill knowledge to 0-1 interval
       temp *= advisor.free_time/10 * advisor.years_of_experience/10 #factor in the free_time and experience parameters
       temp *= C.influences['advisor'] #factor in the global influence of the advisor
-      temp *= memeber[skill]  #finally factor in the member skill
+      temp *= member[skill]  #finally factor in the member skill
       member[skill] = temp
   influence = S.startup_matchup(advised_startup)
   return influence
 
-A.advisor_unit_test = () ->
+A.unit_test = () ->
   startup = S.generate_startup()
   console.log('startup is ',startup)
-  success = S.startup_matchup(startup)
-  console.log('success is ',success)
   advisor = A.generate_advisor()
   console.log('advisor is ', advisor)
   influence = A.compute_advisor_influence(advisor, startup)
   console.log('advisor influence is ',influence)
-  console.log('new success is ',success+influence)
+  console.log('new success is ',startup.status+influence)
 
 window.A = A
