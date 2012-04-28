@@ -2,11 +2,11 @@ I = {}
 I.generate_incubator = () ->
   ret = {
   culture_business : L.sector_values(C.all_industries)
-  weather : random_int(10)
-  cost_of_living: Math.max(1, random_int(10))* C.living_cost
+  weather : L.random_int(10)
+  cost_of_living: Math.max(1, L.random_int(10))* C.living_cost
   university_network: L.sector_values(C.all_industries)
-  home_popularity: random_int(10)
-  world_popularity: random_int(10)
+  home_popularity: L.random_int(10)
+  world_popularity: L.random_int(10)
   }
 
   return ret
@@ -33,18 +33,21 @@ I.compute_individual_influence = (success_metric, industry, incub_parameters, ty
 
 
 I.compute_incubator_influence = (success_metric, industry, incub_parameters) ->
+  #returns the hard value of the influence of the incubator's parameters
   ret = 0
   ret += compute_individual_influence(success_metric, industry, incub_parameters, key) for key,value in incub_parameters
   return ret
 
 I.incubator_unit_test = () ->
-  success_metric = random_int(10)
-  industry = C.all_industries[random_int(C.all_industries.length-1)]
+  success_metric = L.random_int(10)
+  console.log('success is ',success_metric)
+  industry = C.all_industries[L.random_int(C.all_industries.length-1)]
   console.log('industry is ',industry)
   incub = I.generate_incubator()
   console.log('incubator parameters are ', incub)
   infl = I.compute_incubator_influence(success_metric,industry,incub)
   console.log('influence is ', infl)
+  console.log('new success is ', success_metric+infl)
 
 window.I = I
 

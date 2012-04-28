@@ -120,6 +120,22 @@ var db = {
                     "finance": 6
                 }
             }
-	}]
+	}],
+	"texts": {
+		"weather": {
+			"10": "Weather is really good",
+			"9": "",
+			"8": "Weather is good",
+			"7": "Weather is somewhat good",
+			"6": "",
+			"5": "Weather is average",
+			"4": "Weather is somewhat bad",
+			"3": "",
+			"2": "Weather is bad",
+			"1": "Weather is really bad",
+			"0": ""
+		},
+		
+	}
 	
 }
