@@ -34,4 +34,11 @@ L.industries_parameters_to_string = () ->
     str+="\n"
   return str
 
+L.generate_random_team_member_name = () ->
+  first_i = L.random_int(124)
+  last_i = L.random_int(124)
+  while (last_i == first_i)
+    last_i = L.random_int(124)
+  return db.first_names[first_i] + " " + db.last_names[last_i]
+
 window.L = L
