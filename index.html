@@ -123,6 +123,28 @@
         </div>
 
     </mustache>
+    
+    <mustache title="results">
+        <div class="row">
+            <div class="column grid_12">
+                <h2>Results of your incubator</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_4">
+                <img src="img/cities/{{image}}" />
+            </div>
+            <div class="column grid_8">
+                <dl>
+                    <dt>Startups incubated:</dt><dd>{{number_of_startups}}</dd>
+                    <dt>Incubated startups profitable:</dt><dd>{{profitable_startups}}</dd>
+                    <dt>Total income:</dt><dd>{{incubator_total_income}}</dd>
+
+                </dl>
+            </div>
+        </div>
+        <div class="ready_button">Start again</div>
+    </mustache>
 
     <mustache title="list_entry">
         <div class="list_entry {{selected}}">

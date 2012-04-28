@@ -165,9 +165,18 @@ function $run_simulation(){
 }
 
 function $results(){
+    var self = {};
+    
+    make_elem();
+    return $elem;
+
+    function make_elem(){
+        $elem = ich.results();
+        $elem.bind("show_results", show_results);
+    }
 
     function show_results(){
-
+        GameController.replace_elem($elem);
     }
 }
 

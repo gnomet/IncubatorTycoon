@@ -37,4 +37,18 @@ C.industries_parameters = {
     marketing: 0.8
     finance: 0.1
 }
+C.natural_disasters = ["earthquake","weather","audit", "reimbursement", "imports", "exit"]
+C.events = ["demo_day","richard_branson","paul_graham","promote_international","promote_national","simplify_reimbursement","lecture_marketing", "lecture_technical", "lecture_finance"]
+C.events_costs={}
+C.events_costs[C.events[0]]=3*C.base_value
+C.events_costs[C.events[1]]=5*C.base_value
+C.events_costs[C.events[2]]=5*C.base_value
+C.events_costs[C.events[3]]=4*C.base_value
+C.events_costs[C.events[4]]=4*C.base_value
+C.events_costs[C.events[5]]=3*C.base_value
+C.events_costs[C.events[6]]=4*C.base_value
+C.events_costs[C.events[7]]=4*C.base_value
+C.events_costs[C.events[8]]=4*C.base_value
+
+C.incubator_starting_cash = 100*C.base_value
 window.C = C
