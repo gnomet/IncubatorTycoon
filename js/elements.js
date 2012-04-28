@@ -29,7 +29,17 @@ function $start_screen(){
 
         $(db.cities).each(function(i, elem){
             var city = db.cities[i];
+
+						//Set textual values for numerical data
 						city.data.weather = L.textify("weather", city.data.weather)
+						city.data.universities.tech = L.textify("universities_tech", city.data.universities.tech)
+						city.data.universities.finance = L.textify("universities_finance", city.data.universities.finance)
+						city.data.universities.marketing = L.textify("universities_marketing", city.data.universities.marketing)
+						city.data.business.agriculture = L.textify("business_agriculture", city.data.business.agriculture)
+						city.data.business.health = L.textify("business_health", city.data.business.health)
+						city.data.business.hardware = L.textify("business_hardware", city.data.business.hardware)
+						city.data.business.web = L.textify("business_web", city.data.business.web)
+						
             console.log(city);
             var $city = ich.city(city);
 

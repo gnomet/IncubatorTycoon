@@ -117,8 +117,98 @@ var db = {
 			"2": "Weather is bad",
 			"1": "Weather is really bad",
 			"0": ""
+		},
+		"universities_tech": {			
+			"10": "Some of the world's most respected universities of technology are in the area.",
+			"9": "",
+			"8": "There is one very good university of technology in the area",
+			"7": "",
+			"6": "",
+			"5": "There are some average unis of technology the area",
+			"4": "",
+			"3": "There are few unis of technology in the area",
+			"2": "",
+			"1": "",
+			"0": "There's no universities of technology in the area."
+		},
+		"universities_finance": {			
+			"10": "Some of the world's most respected universities of finance are in the area.",
+			"9": "",
+			"8": "There is one very good university of finance in the area",
+			"7": "",
+			"6": "",
+			"5": "There are some average unis of finance the area",
+			"4": "",
+			"3": "There are few unis of finance in the area",
+			"2": "",
+			"1": "",
+			"0": "There's no universities of finance in the area."
+		},
+		"universities_marketing": {			
+			"10": "Some of the world's most respected universities of marketing are in the area.",
+			"9": "",
+			"8": "There is one very good university of marketing in the area",
+			"7": "",
+			"6": "",
+			"5": "There are some average unis of marketing the area",
+			"4": "",
+			"3": "There are few unis of marketing in the area",
+			"2": "",
+			"1": "",
+			"0": "There's no universities of marketing in the area."
+		},
+		"business_agriculture": {			
+			"10": "Really good business in agriculture sector (including VCs & educated buyers)",
+			"9": "",
+			"8": "Really good business in agriculture",
+			"7": "Some medium companies related to agriculture",
+			"6": "",
+			"5": "Some small companies related to agriculture",
+			"4": "",
+			"3": "Interest for development in agriculture sector (mostly imports)",
+			"2": "",
+			"1": "Market in agriculture is not yet existent",
+			"0": ""
+		},
+		"business_health": {			
+			"10": "Really good business in health sector (including VCs & educated buyers)",
+			"9": "",
+			"8": "Really good business in health sector",
+			"7": "Some medium companies in health sector",
+			"6": "",
+			"5": "Some small companies in health sector",
+			"4": "",
+			"3": "Interest for development in health sector (mostly imports)",
+			"2": "",
+			"1": "Market in health sector is not yet existent",
+			"0": ""
+		},
+		"business_hardware": {			
+			"10": "Really good business in hardware sector (including VCs & educated buyers)",
+			"9": "",
+			"8": "Really good business in hardware sector",
+			"7": "Some medium companies in hardware sector",
+			"6": "",
+			"5": "Some small companies in hardware sector",
+			"4": "",
+			"3": "Interest for development in hardware sector (mostly imports)",
+			"2": "",
+			"1": "Market in hardware sector is not yet existent",
+			"0": ""
+		},
+		"business_web": {			
+			"10": "Really good business in web industry (including VCs & educated buyers)",
+			"9": "",
+			"8": "Really good business in web industry",
+			"7": "Some medium companies in web industry",
+			"6": "",
+			"5": "Some small companies in web industry",
+			"4": "",
+			"3": "Interest for development in web industry (mostly imports)",
+			"2": "",
+			"1": "Market in web industry is not yet existent",
+			"0": ""
 		}
-		
 	}
 	
 }
