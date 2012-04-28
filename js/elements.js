@@ -171,7 +171,13 @@ function $results(){
     return $elem;
 
     function make_elem(){
-        $elem = ich.results();
+        var res = { 
+            "image": "santiago.jpg",
+            "number_of_startups": "4 (mock data)",
+            "profitable_startups": "2 (mock data)",
+            "incubator_total_income": "$120 (Well done! :)",
+            };
+        $elem = ich.results(res);
         $elem.bind("show_results", show_results);
     }
 
