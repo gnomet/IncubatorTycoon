@@ -13,7 +13,7 @@ G.init_round = (incubator) ->
   if not G.incubator
     G.incubator = incubator
   G.accepting_applications = true
-  G.get_applications(10)
+  G.get_applications(7)
   G.accepting_applications = false
   G.get_advisors()
 
@@ -33,7 +33,7 @@ G.get_possible_events = () ->
 G.add_startup = (startup, cash) ->
   amount_shares = Math.floor(cash/startup.shares_price)
   S.buy_shares(startup, G.incubator, amount_shares)
-  G.startups.append( startup )
+  G.startups.push( startup )
 
 G.hire_advisor = (advisor) ->
   G.advisors.push(advisor)

@@ -3,7 +3,7 @@ var GameController = (function(){
 
 
     self.start_game = function(){
-        G.init();
+        G.init_round();
         self.start_screen = $start_screen();
         self.manage_incubator = $manage_incubator();
         self.run_simulation = $run_simulation();
