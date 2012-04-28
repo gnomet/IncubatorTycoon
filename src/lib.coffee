@@ -18,4 +18,20 @@ L.textify = (key, value) ->
 	while db.texts[key][value] == ""
 		value++
 	return db.texts[key][value]
+
+L.industries_parameters_to_string = () ->
+  str = ""
+  for industry, values of C.industries_parameters
+    str+=industry
+    str+=" [ "
+    for skill, value of values
+      str+=" "
+      str+=skill
+      str+=" : "
+      str+=value
+      str+=" "
+    str+=" ] "
+    str+="\n"
+  return str
+
 window.L = L
