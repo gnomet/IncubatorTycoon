@@ -150,9 +150,17 @@ function $event(){
 }
 
 function $run_simulation(){
+    var $elem = $("<div></div>");
+    make_elem();
+    return $elem;
 
+    function make_elem(){
+        $elem = ich.run_simulation();
+        $elem.bind("run_simulation", run_simulation);
+    }
+    
     function run_simulation(){
-
+        GameController.replace_elem($elem);
     }
 
     function pause_simulation(){
@@ -165,8 +173,6 @@ function $run_simulation(){
 }
 
 function $results(){
-    var self = {};
-    
     make_elem();
     return $elem;
 
