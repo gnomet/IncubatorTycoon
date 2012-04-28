@@ -1,21 +1,38 @@
+G = {}
 
+G.incubator = {}
+G.advisors = []
+G.startups = []
+G.startup_applications = []
+G.advisors_for_hire = []
+G.events_for_hire = []
+G.events_that_happened = []
 
+G.init = () ->
+  i = 0
+  for event in C.events
+    G.events_for_hire.append(
+      {
+        event: event
+        cost: C.events_costs[i]
+      }
+    )
+    i++
 
+  G.incubator = I.generate_incubator()
+G.i = G.init
+G.get_applications = (count) ->
+  G.startup_applications = [S.generate_startup() for i in [0..count]]
 
-console.log({ a: L.random_int(3) for a in ["hello", "goodbye"]})
+G.add_startup = ( startup, cash) ->
+  G.incubator.cash -= cash
+  startup.cash += cash
+  G.startups.append( startup )
 
+G.next_month = () ->
 
-#propose_advisors = (how_many=10) ->
-#  i = 0
-#  while i < how_many
-#    i++
-#    generate_advisor()
+G.trigger_event = ( event ) ->
 
-#propose_startups = (how_many=10) ->
-#  i = 0
-#  while i < how_many
-#    i += 1
-#    generate_startup()
+window.G = G
 
-console.log()
-coffeescript_ready()
+coffeescript_ready() # because this is the last js file
