@@ -20,6 +20,7 @@ A.generate_advisor = () ->
   total_knowledge += val for industry,val of ret.skill_knowledge
   ret.salary = (total_knowledge * C.advisor['total_knowledge']) + ( ret.free_time * C.advisor['free_time'] ) + (ret.years_of_experience * C.advisor['years_of_experience'] )
   ret.salary *= C.advisor_basis_salary
+  ret.startup = 0
   return ret
 
 
