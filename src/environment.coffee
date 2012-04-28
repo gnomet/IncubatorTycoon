@@ -83,19 +83,19 @@ E.buy_event = (event, incubator, teams_list) ->
     #oki, we paid for it, now let's see what it does
     if event is C.events[0]
       #demo day: influences all industries + 10%
-      for industry in C.industries_parameters
-        for key, value of industry
-          value = 1.1*value
+      for industry,params of C.industries_parameters
+        for key,value of params
+          params[key] *= 1.1
     if event is C.events[1]
       #richard branson visits & talks about marketing: influences all marketing skills + 20%
       for startup in teams_list
-        for members in startup.team
+        for member in startup.team
           member[C.all_skills[0]] *= 1.2
           member[C.all_skills[0]] = Math.min(10,member[C.all_skills[0]]) #let's keep it within limits
     if event is C.events[2]
       #paul graham visits & talks about finance: influences all finance skills + 20%
       for startup in teams_list
-        for members in startup.team
+        for member in startup.team
           member[C.all_skills[2]] *= 1.2
           member[C.all_skills[2]] = Math.min(10,member[C.all_skills[2]]) #let's keep it within limits
     if event is C.events[3]
@@ -104,28 +104,28 @@ E.buy_event = (event, incubator, teams_list) ->
       incubator.world_popularity = Math.min(10,incubator.world_popularity)
     if event is C.events[4]
       #national promoting: influences national popularity of the incubator (+2)
-      incubator.national_popularity += 2
-      incubator.national_popularity = Math.min(10,incubator.national_popularity)
+      incubator.home_popularity += 2
+      incubator.home_popularity = Math.min(10,incubator.home_popularity)
     if event is C.events[5]
       #simplify reimbursement process: influences business costs -10%
       for startup in teams_list
-        startup["burn_rate"] *= 0.9
+        startup.burn_rate *= 0.9
     if event is C.events[6]
       #lecture on marketing: +1 to all marketing skills
       for startup in teams_list
-        for members in startup.team
+        for member in startup.team
           member[C.all_skills[0]] += 1
           member[C.all_skills[0]] = Math.min(10,member[C.all_skills[0]]) #let's keep it within limits
     if event is C.events[7]
       #lecture on marketing: +1 to all marketing skills
       for startup in teams_list
-        for members in startup.team
+        for member in startup.team
           member[C.all_skills[1]] += 1
           member[C.all_skills[1]] = Math.min(10,member[C.all_skills[1]]) #let's keep it within limits
     if event is C.events[8]
       #lecture on marketing: +1 to all marketing skills
       for startup in teams_list
-        for members in startup.team
+        for member in startup.team
           member[C.all_skills[2]] += 1
           member[C.all_skills[2]] = Math.min(10,member[C.all_skills[2]]) #let's keep it within limits
 
@@ -160,25 +160,24 @@ E.unit_test_natural_disasters = () ->
     infl = I.compute_incubator_influence(S.startup_matchup(startup),startup.industry,incubator)
     console.log('final status', startup.status+infl)
 
-E.test = () ->
+E.unit_test_events = () ->
   incubator = I.generate_incubator()
   teams_list = []
   for i in [1]
     sta = S.generate_startup()
     teams_list.push(sta)
-  event = C.events[0]
-  #disaster = C.natural_disasters[1]
-  console.log('incubator before: ', incubator)
-  console.log('industries parameters before: ', C.industries_parameters)
+  event = C.events[8]
+  console.log('incubator before: ', I.to_string(incubator))
+  console.log('industries parameters before: ', L.industries_parameters_to_string())
   console.log('teams stats before')
   for startup in teams_list
     console.log(S.to_string(startup))
     infl = I.compute_incubator_influence(S.startup_matchup(startup),startup.industry,incubator)
     console.log('final status', startup.status+infl)
-  console.log('event bought: ', event)
+  console.log('event bought: ', event,C.events_costs[event])
   E.buy_event(event, incubator, teams_list)
-  console.log('incubator parameters after: ', incubator)
-  console.log('industries parameters after: ', C.industries_parameters)
+  console.log('incubator parameters after: ', I.to_string(incubator))
+  console.log('industries parameters after: ', L.industries_parameters_to_string())
   for startup in teams_list
     S.update_success(startup)
   console.log('teams stats after')
