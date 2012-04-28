@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet/less" type="text/css" href="css/objects.less">
 
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -61,7 +62,6 @@
     </mustache>
     <mustache title="city_select">
         <div class="cities"></div>
-        <div class="clear">&nbsp;</div>
         <div class="city_details">
             Select a city to see more about it
         </div>
@@ -73,6 +73,7 @@
         </div>
     </mustache>
     <mustache title="city_description">
+        <div>
         <dl>
             <dt>Location</dt><dd>{{name}}</dd>
             <dt>Agriculture</dt><dd>{{data.business.agriculture}}</dd>
@@ -85,7 +86,8 @@
             <dt>Finance Universities</dt><dd>{{data.universities.finance}}</dd>
             <dt>Weather</dt><dd>{{data.weather}}</dd>
         </dl>
-        <div id="select_city">Incubate here</div>
+        <div class="select_city">Incubate here</div>
+        </div>
     </mustache>
 
     <!-- JavaScript at the bottom for fast page loading -->

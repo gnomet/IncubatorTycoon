@@ -96,22 +96,6 @@ var db = {
                     "marketing": 8,
                     "finance": 6
                 }
-            }},{
-            "name": "Bangalore",
-            "data": {
-                "weather": 8,
-                "cost_of_living": 1,
-                "business": {
-                    "agriculture": 8,
-                    "health": 2,
-                    "hardware": 8,
-                    "web": 4
-                },
-                "universities": {
-                    "tech": 8,
-                    "marketing": 7,
-                    "finance": 6
-                }
             }
 	}]
 	
