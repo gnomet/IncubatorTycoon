@@ -19,4 +19,22 @@ C.advisor = {
   free_time:0.35
   years_of_experience: 0.4
 }
+C.industries_parameters = {
+  agriculture:
+    technical: 0.4
+    marketing: 0.4
+    finance: 0.2
+  hardware:
+    technical: 0.6
+    marketing: 0.3
+    finance: 0.1
+  health:
+    technical: 0.1
+    marketing: 0.3
+    finance: 0.5
+  buzzwords:
+    technical: 0.1
+    marketing: 0.8
+    finance: 0.1
+}
 window.C = C

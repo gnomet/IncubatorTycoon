@@ -40,30 +40,11 @@ S.generate_startup = () ->
     team: S.random_team()
     burn_rate: L.random_int(10) * C.burn_basis
     cash: L.random_int(10) * C.cash_basis
-  industries =
-    agriculture:
-      technical: 0.4
-      marketing: 0.4
-      finance: 0.2
-    hardware:
-      technical: 0.6
-      marketing: 0.3
-      finance: 0.1
-    health:
-      technical: 0.1
-      marketing: 0.3
-      finance: 0.5
-    buzzwords:
-      technical: 0.1
-      marketing: 0.8
-      finance: 0.1
+
   industry = C.all_industries[random_int(C.all_industries.length-1)]
   ret.industry = industry
-  ret.project_requirements = industries[ industry ]
-
-  ret.status = S.startup_matchup(ret) * C.starting_match_bias
-  ret.status -= L.random_int(C.possible_starting_deficit)
-
+  ret.deficit -= L.random_int(C.possible_starting_deficit)
+  ret.status = S.startup_matchup(ret) * C.starting_match_bias + ret.deficit
   return ret
 
 S.compute_team_skills = (startup) ->
@@ -79,7 +60,7 @@ S.compute_team_skills = (startup) ->
 S.startup_matchup = (startup) ->
   team_skills = S.compute_team_skills(startup)
   match = 0
-  for skill, importance in startup.project_requirements
+  for skill, importance in C.industries_parameters[startup.industry]
     match += importance * team_skills[skill]
   return match
 
