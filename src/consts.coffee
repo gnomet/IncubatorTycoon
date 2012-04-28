@@ -8,4 +8,9 @@ C.influences = {
   advisor: 0.4
   events: 0.2
              }
-window.C = C
+C.starting_match_bias = 1
+C.possible_starting_deficit = 7
+C.development_factor = .2
+C.burn_basis = 20000
+C.cash_basis = 100000
+indow.C = C
