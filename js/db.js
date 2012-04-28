@@ -1,7 +1,8 @@
 var db = {
 	"cities": [
         {
-            "name": "Santiago",
+        		"name": "Santiago",
+						"image": "santiago.jpg",
             "data": {
     			"weather": 8,
 	    		"cost_of_living": 4,
@@ -18,6 +19,7 @@ var db = {
 			    }
 		    }},{
 		    "name": "San Francisco",
+				"image": "sanfrancisco.jpg",
             "data": {
     			"weather": 6,
 	    		"cost_of_living": 8,
@@ -34,6 +36,7 @@ var db = {
 		    	}
 		    }},{
             "name": "New York",
+						"image": "newyork.jpg",
             "data": {
                 "weather": 4,
                 "cost_of_living": 9,
@@ -50,6 +53,7 @@ var db = {
                 }
             }},{
             "name": "Singapore",
+						"image": "singapore.jpg",
             "data": {
                 "weather": 9,
                 "cost_of_living": 3,
@@ -66,6 +70,7 @@ var db = {
                 }
             }},{
             "name": "London",
+						"image": "london.jpg",
             "data": {
                 "weather": 1,
                 "cost_of_living": 7,
@@ -82,6 +87,7 @@ var db = {
                 }
             }},{
             "name": "Sao Paulo",
+						"image": "saopaulo.jpg",
             "data": {
                 "weather": 9,
                 "cost_of_living": 4,
@@ -98,6 +104,7 @@ var db = {
                 }
             }},{
             "name": "Bangalore",
+						"image": "bangalore.jpg",
             "data": {
                 "weather": 8,
                 "cost_of_living": 1,
@@ -113,6 +120,22 @@ var db = {
                     "finance": 6
                 }
             }
-	}]
+	}],
+	"texts": {
+		"weather": {
+			"10": "Weather is really good",
+			"9": "",
+			"8": "Weather is good",
+			"7": "Weather is somewhat good",
+			"6": "",
+			"5": "Weather is average",
+			"4": "Weather is somewhat bad",
+			"3": "",
+			"2": "Weather is bad",
+			"1": "Weather is really bad",
+			"0": ""
+		},
+		
+	}
 	
 }
