@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 function run(){
     load_mustache_templates();
+    GameController.start_game();
 }
 
 function load_mustache_templates(){
