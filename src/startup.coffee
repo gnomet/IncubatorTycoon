@@ -30,6 +30,7 @@ generate_startup = () ->
       marketing: 8
       finance: 1
   industry = C.all_industries[random_int(C.all_industries.length-1)]
+  ret.industry = industry
   ret.project_requirements = industries[ industry ]
 
   ret.status = startup_matchup(ret) * C.starting_match_bias
