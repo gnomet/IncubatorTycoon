@@ -31,6 +31,6 @@ generate_startup = () ->
       technical: 10
       marketing: 80
       finance: 10
-  industry = ["agriculture", "hardware", "health", "buzzwords"][random_int(3)]
+  industry = C.all_industries[random_int(C.all_industries.length-1)]
   ret.project_requirements = industries[ industry ]
   return ret
