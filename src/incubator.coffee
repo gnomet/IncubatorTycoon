@@ -1,23 +1,49 @@
-generate_incubator = () ->
+I = {}
+I.generate_incubator = () ->
   ret = {
-
   culture_business : L.sector_values(C.all_industries)
   weather : random_int(10)
   cost_of_living: Math.max(1, random_int(10))* C.living_cost
-  university_network: sector_university_network()
-
+  university_network: L.sector_values(C.all_industries)
+  home_popularity: random_int(10)
+  world_popularity: random_int(10)
   }
-  total_culture = 0
-  total_culture += val for industry,val of ret.culture_business
-  ret.salary = (total_culture * 0.25) + ( ret.free_time * 0.35 ) + (ret.years_of_experience * 0.4 )
-  ret.salary *= 20000
+
+  return ret
+
+I.compute_individual_influence = (success_metric, industry, incub_parameters, type) ->
+  ret = 0
+  if type is 'weather' then
+    ret = L.weather_impact(industry)*2 #depending on the industry, it's positive impact or negative impact
+  if type == 'weather' then
+    ret *= (incub_parameters['weather']-5) #depending on the value of the weather, we influence more or less
+  if type is 'culture_business' then
+    ret = incub_parameters.culture_business[industry] #take the value of the business in the industry
+  if type is 'university_network' then
+    ret = incub_parameters.university_network[industry] #take the value of the business in the industry
+  if type is 'home_popularity' then
+    ret = L.home_popularity_impact(incub_parameters.home_popularity) #take the value of the business in the industry
+  if type is 'world_popularity' then
+    ret = L.world_popularity_impact(incub_parameters.world_popularity) #take the value of the business in the industry
+
+  ret /= 10 #rescale the value of to interval 0-1
+  ret *= C.influences['incubator'] #look at what's the max incubator influence
+  ret *= success_metric #finally, compute hard number from success_metric
   return ret
 
 
-test = () ->
-  culture_business = sector_culture_business()
-  total_culture = 0
+I.compute_incubator_influence = (success_metric, industry, incub_parameters) ->
+  ret = 0
+  ret += compute_individual_influence(success_metric, industry, incub_parameters, key) for key,value in incub_parameters
+  return ret
 
+window.I = I
 
-
-test()
+incubator_unit_test = () ->
+  success_metric = random_int(10)
+  industry = C.all_industries[random_int(C.all_industries.length-1)]
+  console.log('industry is ',industry)
+  incub = I.generate_incubator()
+  console.log('incubator parameters are ', incub)
+  infl = I.compute_incubator_influence(success_metric,industry,incub)
+  console.log('influence is ', infl)
