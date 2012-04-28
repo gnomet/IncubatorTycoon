@@ -43,6 +43,7 @@ S.generate_startup = () ->
   ret.team_fit = if ret.team.length > 1 then  L.random_int(10) else  0
   industry = C.all_industries[L.random_int(C.all_industries.length-1)]
   ret.industry = industry
+  ret.name = "Richard Branson"
   ret.deficit = 0 - Math.max(1,L.random_int(C.possible_starting_deficit))
   ret.status = S.startup_matchup(ret) * C.starting_match_bias + ret.deficit
   ret.shares_min = L.random_int(10)

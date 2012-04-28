@@ -176,6 +176,45 @@
         </div>
     </mustache>
 
+    <mustache title="startup_popup">
+        <div class="popup" {{startup_popup}}>
+            <h2></h2>
+            <div class="description"></div>
+            <div class="options_holder">
+                <div class="accept">I'll take em!</div><div class="deny">No thanks...</div>
+            </div>
+
+        </div>
+    </mustache>
+    <mustache title="startup_description">
+        <div class="row">
+            {{industry}}<br />
+            {{slogan}}<br />
+            <h4>Cash</h4>
+            Currently has $<strong>{{cash}}</strong> and spends $<strong>{{burn_rate}}</strong> per month.
+        </div>
+        <hr />
+        <div class="row">
+            <h4>Team members</h4>
+            {{#team}}
+            <h5>{{name}}</h5>
+            <ul>
+                <li>{{finance}}</li>
+                <li>{{marketing}}</li>
+                <li>{{technical}}</li>
+            </ul>
+            {{/team}}
+        </div>
+        <hr />
+        <div class="row">
+            <div style="float:left;padding-left:20px;">
+                <p>You can invest up to the companys valuation at ${{valuation}}.  How much would you like to invest?</p>
+                <input type="text" id="capital_invested" />
+            </div>
+        </div>
+
+    </mustache>
+
     <!-- JavaScript at the bottom for fast page loading -->
     <script type="text/javascript" src="src/coffee-script.js"></script>
     <script type="text/coffeescript" src="src/consts.coffee"></script>
