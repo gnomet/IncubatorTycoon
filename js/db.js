@@ -142,72 +142,63 @@ var db = {
   	      "description": "You organize a Demo Day to showcase your most prominent startups. This improves the reputation of your incubator and helps your startups to get feedback, learn and market their products.",
   	      "choice": true,
   	      "allow_string": "Yea let's do it and invite everyone! And spank our startups to do their best on stage.",
-  	      "deny_string": "Uhh, sounds like a hassle to organize",
-  	      "cost": 0
+  	      "deny_string": "Uhh, sounds like a hassle to organize"
   	  },
   	  "richard_branson": {
   	      "title": "Invite Richard Branson to visit your incubator",
   	      "description": "Invite Sir Richard Branson to visity your incubator. Pay his expenses and mobilize your startup folks to do some guerilla marketing. This will surely have a positive effect on everything your incubator touches.",
   	      "choice": true,
   	      "allow_string": "Yeay, Branson's glory will save the day!",
-  	      "deny_string": "Nah, he'll pay to visit us soon...",
-  	      "cost": 0
+  	      "deny_string": "Nah, he'll pay to visit us soon..."
   	  },
   	  "paul_graham": {
   	      "title": "Invite Paul Graham to give a talk in your incubator",
   	      "description": "Paul Graham could be interested to give a talk that would surely contribute to the technical skills and enthusiasm of your startups.",
   	      "choice": true,
   	      "allow_string": "Gimme Paul!",
-  	      "deny_string": "I'll think I'll just tell the juniors a trick of two myself.",
-  	      "cost": 0
+  	      "deny_string": "I'll think I'll just tell the juniors a trick of two myself."
   	  },
   	  "promote_international": {
   	      "title": "Send one of your team to promote your incubator internationally",
   	      "description": "There's a big startup event coming overseas and sending someone to promote your incubator could increase your reputation a lot and possibly result in more and better applications in the future.",
   	      "choice": true,
   	      "allow_string": "Sure! Let our message be heard.",
-  	      "deny_string": "The next billion dollar startup we're incubating will bring us all the reputation we need.",
-  	      "cost": 0
+  	      "deny_string": "The next billion dollar startup we're incubating will bring us all the reputation we need."
   	  },
   	  "promote_national": {
   	      "title": "Participate in a local event to promote your incubator",
   	      "description": "To get more applications from your country, you can send a promoter to upcoming event to increase your reputation in your home country.",
   	      "choice": true,
   	      "allow_string": "Yep, all publicity is good publicity.",
-  	      "deny_string": "Not this time.",
-  	      "cost": 0
+  	      "deny_string": "Not this time."
   	  },
   	  "simplify_reimbursement": {
   	      "title": "Simplify reimbursement process",
   	      "description": "The reimbursement process is currently quite bureaucratic, and simplifying it could save startups time to do more productive work.",
   	      "choice": true,
   	      "allow_string": "Hu, my process? Well, maybe there's slightly room for improvement.. ",
-  	      "deny_string": "Nope, it will grow them up to fill a few papers.",
-  	      "cost": 0
+  	      "deny_string": "Nope, it will grow them up to fill a few papers."
   	  },
   	  "lecture_marketing": {
   	      "title": "Lecture in marketing",
   	      "description": "Organize a lecture with a marketing professional to teach some new stuff to your startups",
   	      "choice": true,
   	      "allow_string": "Sure",
-  	      "deny_string": "No",
-  	      "cost": 0
+  	      "deny_string": "No"
   	  },
   	  "lecture_technical": {
   	      "title": "Lecture about technology",
   	      "description": "This lecture has tips and trick especially for web startups, but helpful stuff for everyone's technical skills.",
   	      "choice": true,
   	      "allow_string": "Tech, yes",
-  	      "deny_string": "Techno",
-  	      "cost": 0
+  	      "deny_string": "Techno"
   	  },
   	  "lecture_finance": {
   	      "title": "Finances lecture",
   	      "description": "Get a finance professional teach your startups the essentials of keeping the finnances in order.",
   	      "choice": true,
   	      "allow_string": "Organize this",
-  	      "deny_string": "No thanks",
-  	      "cost": 0
+  	      "deny_string": "No thanks"
   	  }
 	},
 	"texts": {
