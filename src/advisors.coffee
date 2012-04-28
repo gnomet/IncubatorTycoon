@@ -1,3 +1,14 @@
+"""
+advisor = {
+  skill_knowledge: {
+     skill: 1-10,...
+  }
+  free_time: 1-10
+  years_of_experience: 1-10
+  salary: $some_number
+}
+"""
+
 A = {}
 A.generate_advisor = () ->
   ret = {

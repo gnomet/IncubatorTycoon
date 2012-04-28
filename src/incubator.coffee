@@ -15,7 +15,7 @@ I.compute_individual_influence = (success_metric, industry, incub_parameters, ty
   ret = 0
   if type is 'weather'
     ret = L.weather_impact(industry)*2 #depending on the industry, it's positive impact or negative impact
-  if type == 'weather'
+  if type is 'weather'
     ret *= (incub_parameters['weather']-5) #depending on the value of the weather, we influence more or less
   if type is 'culture_business'
     ret = incub_parameters.culture_business[industry] #take the value of the business in the industry
