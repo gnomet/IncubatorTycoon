@@ -17,26 +17,22 @@ function $box(dimensions){
 
 function $start_screen(){
     var self = {};
-
-    var $elem = ich.box();
-    bind_elem();
+    var $elem = null;
+    make_elem();
     return $elem;
 
-    function bind_elem(){
-        $elem.find(".box_content").append(
-            ich.city_select(db.cities)
-        );
+    function make_elem(){
+        $elem = ich.city_select(db.cities);
 
         $(db.cities).each(function(i, elem){
             var city = db.cities[i];
-						city.data.weather = L.textify("weather", city.data.weather)
-            console.log(city);
+			city.data.weather = L.textify("weather", city.data.weather)
             var $city = ich.city(city);
 
             $city.bind("click", function(){
                 var $description = ich.city_description(city);
                 $elem.find(".city_details").html($description);
-                $description.find(".select_city").bind("click", function(){
+                $elem.find(".select_city").bind("click", function(){
                     $elem.hide();
                     GameController.manage_incubator.trigger("new_season");
                 });
@@ -46,23 +42,58 @@ function $start_screen(){
             $elem.find(".cities").append($city);
 
         });
+
     }
 }
 
 function $manage_incubator(){
     var self = {};
 
-    var $elem = ich.box();
-    bind_elem();
+    make_elem();
     return $elem;
 
-    function bind_elem(){
-        $elem.bind("new_season", new_season)
+    function make_elem(){
+        $elem = ich.manage_incubator();
+        $elem.bind("new_season", new_season);
     }
 
     function new_season(){
+        GameController.replace_elem($elem);
+        //Get list of event types
+        var events = [
+            {
+                selected: "selected",
+                title: "Sup",
+                tagline: "niggaz"
+            },
+            {
+                title: "Sup",
+                tagline: "niggaz"
+            },
+            {
+                title: "Sup",
+                tagline: "niggaz"
+            }
+        ];
+
+        $(events).each(function(){
+            var $li = ich.list_entry(this);
+            $li.bind("click", function(){
+                GameController.event.trigger("manual_event", this);
+            });
+            $elem.find(".event_list").append($li);
+        });
+
+        //Get list of startups
+        var startups = {};
+
+        //Get list of advisors
+        var advisors = {};
 
     }
+
+
+
 
     function overlay_in_season(){
 
@@ -104,7 +135,7 @@ function $agent_details(){
 }
 function $event(){
 
-    function show_event(){
+    function manual_event(){
 
     }
 }

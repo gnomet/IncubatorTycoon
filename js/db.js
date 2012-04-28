@@ -18,7 +18,7 @@ var db = {
 			    	"finance": 6
 			    }
 		    }},{
-		    "name": "San Francisco",
+		    "name": "San Fran",
 				"image": "sanfrancisco.jpg",
             "data": {
     			"weather": 6,
