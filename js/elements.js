@@ -103,14 +103,18 @@ function $manage_incubator(){
         });
 
         //Get list of startups
-        var startups = {};
+        var startups = G.startup_applications[0];
 
         $(startups).each(function(){
-           var $li = isc.list_entry(this);
+            var ich_var = {title: this.name, tagline: this.industry};
+
+            console.log(ich_var);
+            var $li = ich.list_entry(ich_var);
             var raw_this = this;
             $li.bind("click", function(){
-                GameController.startup.trigger("show_startup", raw_this);
+                GameController.startup_details.trigger("show_startup", raw_this);
             });
+            $elem.find(".startup_list").append($li);
         });
 
         //Get list of advisors
@@ -128,21 +132,51 @@ function $manage_incubator(){
     }
 }
 
-function $startup(){
+function $startup_details(){
     var self = {};
-    var $elem = $("<div></div>");
+    var $elem = null;
     make_elem();
     return $elem;
 
     function show_startup(e, the_startup){
+        $elem.find("h2").text(the_startup.name);
 
+        var clicked_button = e.target;
+
+        for(var i in the_startup.team){
+            the_startup.team[i].finance =  L.textify("finance_skills", the_startup.team[i].finance);
+            the_startup.team[i].marketing =  L.textify("marketing_skills", the_startup.team[i].marketing);
+            the_startup.team[i].technical =  L.textify("tech_skills", the_startup.team[i].technical);
+        }
+
+        $elem.find(".accept").bind("click", function(){
+            var amount_to_invest = parseInt($("#capital_invested").val());
+            if(amount_to_invest > the_startup.valuation){
+                alert("Well that's silly, don'y invest more than the company is worth.")
+            } else {
+                G.add_startup(the_startup, amount_to_invest);
+                $elem.fadeOut(100, function(){
+                    $elem.find(".description").html("");
+                });
+                $("#greyout").fadeOut(100);
+
+                $(clicked_button).addClass("selected");
+            }
+        });
+
+        $elem.find(".deny").bind("click", function(){
+            $elem.fadeOut(100, function(){
+                $elem.find(".description").html("");
+            });
+            $("#greyout").fadeOut(100);
+        });
+
+        $elem.find(".description").append( ich.startup_description(the_startup) );
         GameController.pop_over($elem);
     }
 
-
     function make_elem(){
-        $elem = ich.startup_popup();
-        $elem.find("h2").text(the_startup.)
+        $elem = ich.startup_popup({startup_popup: " id=startup_popup "});
         $elem.bind("show_startup", show_startup);
     }
 }
@@ -156,7 +190,7 @@ function $event(){
     function manual_event(e, the_event){
         $elem.find("h2").text(the_event.title);
         $elem.find(".description").text(the_event.description);
-        console.log(the_event);
+
         $elem.find(".accept").text(the_event.accept_text).bind("click", function(){
             $elem.fadeOut(100);
             $("#greyout").fadeOut(100);

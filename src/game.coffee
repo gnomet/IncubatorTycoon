@@ -28,7 +28,7 @@ G.add_startup = ( startup, cash) ->
 G.next_month = () ->
   if G.accepting_applications
     G.accepting_applications = false
-    get_applications(10)
+    get_applications(7)
   get_advisors()
 
   # Startups learn

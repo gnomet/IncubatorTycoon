@@ -139,6 +139,11 @@ mustache {
 
 }
 
+.startup_list {
+    height: 500px;
+    overflow: auto;
+}
+
 .list_entry {
     padding: 3px;
     border: 2px #222 solid;
@@ -157,7 +162,30 @@ mustache {
     .text_glow();
 }
 
-.popup-message {
+#startup_popup{
+    width: 800px;
+    height: 700px;
+    margin-left: -400px;
+    margin-top: -400px;
+
+    h4 {
+        margin: 5px;
+    }
+
+    h5 {
+        margin: 5px;
+    }
+
+    h2 {
+        margin-bottom: 5px;
+    }
+
+    ul {
+        margin: 0px;
+    }
+}
+
+.popup {
     background-color: #EEE;
     .drop_shadow(10px);
     position: absolute;
@@ -167,7 +195,7 @@ mustache {
     left: @game_width / 2;
     margin-left: -200px;
     margin-top: -100px;
-    padding: 5px;
+    padding: 10px;
     border: 1px black solid;
     z-index: 9001;
 
@@ -214,4 +242,8 @@ mustache {
     opacity:0.4;
     filter:alpha(opacity=40);
     display: none;
+}
+
+h5{
+    margin:5px;
 }
