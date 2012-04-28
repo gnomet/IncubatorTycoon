@@ -14,4 +14,8 @@ L.home_popularity_impact = (industry,popularity_value) ->
 L.world_popularity_impact = (industry,popularity_value) ->
   return popularity_value if industry is C.all_industries[3] or industry is C.all_industries[2]
   return 0
+L.textify = (key, value) ->
+	while db.texts[key][value] == ""
+		value++
+	return db.texts[key][value]
 window.L = L
