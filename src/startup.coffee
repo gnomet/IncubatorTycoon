@@ -34,3 +34,6 @@ generate_startup = () ->
   industry = ["agriculture", "hardware", "health", "buzzwords"][random_int(3)]
   ret.project_requirements = industries[ industry ]
   return ret
+
+develop_startup = (startup) ->
+  for

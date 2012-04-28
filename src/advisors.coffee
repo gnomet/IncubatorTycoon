@@ -12,3 +12,11 @@ generate_advisor = () ->
   return ret
 
 
+apply_advisor_to_startup = (advisor,startup) ->
+  for team_member in startup.team
+    for sector, knowledege of advisor.sector_knowledge
+      team_member[sector] *= C.teach_factor * advisor.free_time * advisor.years_of_experience * knowledge
+
+  return startup
+
+
