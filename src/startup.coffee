@@ -45,6 +45,10 @@ S.generate_startup = () ->
   ret.industry = industry
   ret.deficit = 0 - Math.max(1,L.random_int(C.possible_starting_deficit))
   ret.status = S.startup_matchup(ret) * C.starting_match_bias + ret.deficit
+  ret.shares_min = L.random_int(10)
+  ret.shares_max = 11 + L.random_int(40)
+  ret.shares_bought = 0
+  ret.shares_price = L.random_int(5)*C.base_value
   return ret
 
 S.compute_team_skills = (startup) ->
@@ -62,6 +66,11 @@ S.startup_matchup = (startup) ->
   for skill, importance of C.industries_parameters[startup.industry]
     match += importance * team_skills[skill]
   return match
+
+S.buy_shares = (incubator, startup, shares_number) ->
+  tranzaction = shares_number*startup.shares_price
+  incubator.cash -= tranzaction
+  startup.shares_bought = shares_number
 
 #S.develop_startup = (startup) ->
 #  current_match = S.startup_matchup(startup)
@@ -121,6 +130,12 @@ S.to_string = (startup) ->
   str+=startup.deficit.toString()
   str+=' success : '
   str+=startup.status.toString()
+  str+=' min_shares : '
+  str+=startup.shares_min.toString()
+  str+=' max_shares : '
+  str+=startup.shares_max.toString()
+  str+=' share price : '
+  str+=startup.shares_price.toString()
   return str
 
 S.unit_test = () ->

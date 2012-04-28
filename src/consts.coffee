@@ -37,6 +37,10 @@ C.industries_parameters = {
     marketing: 0.8
     finance: 0.1
 }
+
+
+
+
 C.natural_disasters = ["earthquake","weather","audit", "reimbursement", "imports", "exit"]
 C.events = ["demo_day","richard_branson","paul_graham","promote_international","promote_national","simplify_reimbursement","lecture_marketing", "lecture_technical", "lecture_finance"]
 C.events_costs={}

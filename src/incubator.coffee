@@ -23,9 +23,9 @@ I.compute_individual_influence = (success_metric, industry, incub_parameters, ty
   if type is 'university_network'
     ret = incub_parameters.university_network[industry] #take the value of the business in the industry
   if type is 'home_popularity'
-    ret = L.home_popularity_impact(incub_parameters.home_popularity) #take the value of the business in the industry
+    ret = L.home_popularity_impact(industry,incub_parameters.home_popularity) #take the value of the business in the industry
   if type is 'world_popularity'
-    ret = L.world_popularity_impact(incub_parameters.world_popularity) #take the value of the business in the industry
+    ret = L.world_popularity_impact(industry,incub_parameters.world_popularity) #take the value of the business in the industry
 
   ret /= 10 #rescale the value of to interval 0-1
   ret *= C.influences['incubator'] #look at what's the max incubator influence
@@ -42,6 +42,40 @@ I.compute_incubator_influence = (success_metric, industry, incub_parameters) ->
     ret += temp
     #console.log('current modification ',temp)
   return ret
+
+I.to_string = (incubator) ->
+  str = ""
+  str+="business culture: "
+  str+="[ "
+  for skill, value of incubator.culture_business
+    str+=" "
+    str+=skill
+    str+=" : "
+    str+=value
+    str+=" "
+  str+=" ] "
+  str+="\n"
+  str+="university network: "
+  str+="[ "
+  for skill, value of incubator.university_network
+    str+=" "
+    str+=skill
+    str+=" : "
+    str+=value
+    str+=" "
+  str+=" ] "
+  str+="\n"
+  str+='weather : '
+  str+=incubator.weather.toString()
+  str+=' living cost : '
+  str+=incubator.cost_of_living.toString()
+  str+=' home popularity : '
+  str+=incubator.home_popularity.toString()
+  str+=' world popularity : '
+  str+=incubator.world_popularity.toString()
+  str+=' cash : '
+  str+=incubator.available_cash.toString()
+  return str
 
 I.unit_test = () ->
   success_metric = L.random_int(10)
