@@ -27,8 +27,9 @@ function $start_screen(){
             ich.city_select(db.cities)
         );
 
-        $(db.cities).each(function(){
-            var city = this;
+        $(db.cities).each(function(i, elem){
+            var city = db.cities[i];
+            console.log(city);
             var $city = ich.city(city);
             $city.bind("click", function(){
                 var $description = ich.city_description(city);
@@ -36,7 +37,8 @@ function $start_screen(){
                     $elem.hide();
                     $manage_incubator.trigger("new_season");
                 });
-                $elem.find(".city_description").html($description);
+                console.log($elem);
+                $elem.find(".city_details").html($description.html());
             });
             $elem.find(".cities").append($city);
 
