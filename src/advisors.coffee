@@ -20,11 +20,15 @@ A.apply_advisor_to_startup = (advisor,startup) ->
 
 
 A.advisor_unit_test = () ->
-
-  console.log('industry is ',industry)
-
-  console.log('incubator parameters are ', incub)
-
-  console.log('influence is ', infl)
+  startup = S.generate_startup()
+  console.log('startup is ',startup)
+  success = S.startup_matchup(startup)
+  console.log('success is ',success)
+  advisor = A.generate_advisor()
+  console.log('advisor is ', advisor)
+  startup = A.apply_advisor_to_startup(advisor, startup)
+  console.log('new startup is ',startup)
+  success = S.startup_matchup(startup)
+  console.log('new success is ',success)
 
   window.A = A
