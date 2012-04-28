@@ -49,7 +49,15 @@ S.generate_startup = () ->
   ret.shares_max = 11 + L.random_int(40)
   ret.shares_bought = 0
   ret.shares_price = L.random_int(5)*C.base_value
+  ret.advisor = 0
   return ret
+
+S.valuation = (startup) ->
+  profit = startup.cash - startup.shares_price*100
+  share_price_change =  profit/100
+  startup.shares_price += share_price_change
+  investment_value = startup.shares_bought*startup.shares_price
+  return investment_value
 
 S.compute_team_skills = (startup) ->
   team_skills = {}
@@ -70,6 +78,7 @@ S.startup_matchup = (startup) ->
 S.buy_shares = (incubator, startup, shares_number) ->
   tranzaction = shares_number*startup.shares_price
   incubator.cash -= tranzaction
+  startup.cash +=tranzaction
   startup.shares_bought = shares_number
 
 #S.develop_startup = (startup) ->
