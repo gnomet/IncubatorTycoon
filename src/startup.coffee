@@ -49,7 +49,7 @@ S.generate_startup = () ->
   ret.shares_min = L.random_int(10)
   ret.shares_max = 11 + L.random_int(40)
   ret.shares_bought = 0
-  ret.shares_price = L.random_int(5)*C.base_value
+  ret.shares_price = Math.max(1,L.random_int(5))*C.base_value
   ret.advisor = 0
   return ret
 
