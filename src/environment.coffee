@@ -17,7 +17,7 @@ All values are a delta applied equally to all startups
 
 """
 
-apply_environment_to_startup = (environment, startup) ->
+E.apply_environment_to_startup = (environment, startup) ->
   if environment.team_fit? then startup.team_fit += environment.team_fit
   if environment.cash? then startup.cash += environment.cash
   if environment.burn_rate? then startup.burn_rate += environment.burn_rate
@@ -25,6 +25,20 @@ apply_environment_to_startup = (environment, startup) ->
   if environment.skills?
     for skill, delta of environment.skills
       for member in startup.team
-        member[skill] += delta
+        if member[skill]? then member[skill] += delta
+  if environment[startup.sector]?
+    startup = E.apply_environment_to_startup(environment[startup.sector], startup)
+  return startup
+
+# One such disaster
+E.reimbursement_riot =
+  team_fit: 1
+  cash: -40000
+  burn_rate: -1000
+  status: -1.5
+  skills:
+    finance: -2
+
+
 
 window.E = E

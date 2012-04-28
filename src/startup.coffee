@@ -1,3 +1,28 @@
+"""
+Startup = {
+  team_fit : 1-10
+  team : [
+    {
+      technical: 1-10,
+      marketing: 1-10,
+      finance: 1-10
+    },
+    {  ... }
+  ],
+  burn_rate: $Some amount
+  cash: $some amount
+  industry: "at the moment, agriculture health tech or buzzwords"
+  project_requirements: { // These sum to 10
+     technical: 1-10
+    marketing: 1-10
+    finance: 1-10
+  },
+  status: a number.  Currently represents cashflow as related to expenses, each 1 point equals 20% of burn_rate in income,
+          can be negative, meaning they are burning more than burn_rate
+}
+
+"""
+
 S={}
 
 S.random_team = (max_members =3) ->
