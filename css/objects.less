@@ -6,6 +6,9 @@
 
 @chrome_background: #DDD;
 
+@color_highlight: #753333;
+@color_selected: #337533;
+
 body {
     background: #222222
 }
@@ -14,6 +17,16 @@ body {
   border-radius: @radius;
   -moz-border-radius: @radius;
   -webkit-border-radius: @radius;
+}
+
+.slight_shadow(){
+    -moz-box-shadow: 0 0 3px #888;
+    -webkit-box-shadow: 0 0 3px#888;
+    box-shadow: 0 0 3px #888;
+}
+
+.text_glow(){
+    text-shadow: #13243B 0px 0px 4px;
 }
 
 #game_area {
@@ -48,24 +61,9 @@ body {
         top: @header_height + @header_border_bottom_height;
         width: 100%;
         height: @game_height - @header_height;
-        padding: 5px;
+        padding: 5px 0px;
         background: #EEEEEE;
         border-top: 1px #DDD solid;
-    }
-
-    .box {
-        border: 1px black solid;
-        background: @chrome_background;
-        padding: 5px;
-
-        .box_header {
-            height: 10px;
-        }
-
-        .box_content {
-            background-color: #EEE;
-            border: 1px solid black;
-        }
     }
 }
 
@@ -81,14 +79,15 @@ mustache {
         border: 1px solid black;
         float: left;
         height: 100px;
-        margin: 10px;
         padding: 10px;
-        width: 100px;
+        margin: 10px;
+        width: 110px;
         text-align: center;
+        cursor: pointer;
 
         span {
             color: #FFFFFF;
-            text-shadow: #13243B 0px 0px 4px;
+            .text_glow();
             font-weight: bold;
             position: relative;
             top: -60px;
@@ -116,4 +115,44 @@ mustache {
 
 .clear {
     clear: both;
+}
+
+.to_center {
+    text-align: center;
+}
+
+.ready_button {
+    background-color: @color_selected;
+    padding: 10px 20px;
+    width: 60px;
+    display: inline;
+    color: #FFF;
+    font-size: 1.5em;
+    border: 2px #222 solid;
+    .slight_shadow();
+    cursor: pointer;
+    position: absolute;
+    bottom: 40px;
+    left: @game_width / 2;
+    margin-left: -50px;
+    text-align: middle;
+
+}
+
+.list_entry {
+    padding: 3px;
+    border: 2px #222 solid;
+    margin: 4px;
+    .slight_shadow();
+    cursor: pointer;
+    h4 {
+        padding: 2px;
+        margin: 0px;
+    }
+}
+
+.selected {
+    background-color: @color_selected;
+    color: #fff;
+    .text_glow();
 }

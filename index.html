@@ -51,42 +51,108 @@
 
 
     <!-- MUSTACHES! -->
-    <mustache title="box">
-        <div class="box" style="width: {{#width}}{{width}}px{{/width}}; height:{{#height}}{{height}}px{{/height}};">
-            <div class="box_header"></div>
-            <div class="box_content"></div>
-        </div>
-    </mustache>
     <mustache title="header">
         <span class="name">{{name}}</span> - <span class="location">{{location}}</span><span class="cash_on_hand">{{cash_available}}</span><span class="cash_invested">{{cash_invested}}l</span>
     </mustache>
+
     <mustache title="city_select">
-        <div class="cities"></div>
-        <div class="city_details">
-            Select a city to see more about it
+        <div class="row">
+            <div class="column grid_12">
+                <h2>Where will you start your incubator?</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cities grid_12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_12 city_details">
+                Choose a city above a the location for your new incubator.  Each city has its own pro's and con's,
+                and you can't move it once you've started!
+            </div>
         </div>
     </mustache>
+
     <mustache title="city">
         <div class="city">
-            <img src="img/cities/{{image}}" width="100", height="100" />
+            <img src="img/cities/{{image}}" width="100" height="100" />
             <span>{{name}}</span>
         </div>
     </mustache>
+
     <mustache title="city_description">
-        <div>
-        <dl>
-            <dt>Location</dt><dd>{{name}}</dd>
-            <dt>Agriculture</dt><dd>{{data.business.agriculture}}</dd>
-            <dt>Hardware</dt><dd>{{data.business.hardware}}</dd>
-            <dt>Health</dt><dd>{{data.business.health}}</dd>
-            <dt>Buzzword Compliance</dt><dd>{{data.business.web}}</dd>
-            <dt>Cost of Living</dt><dd>{{data.cost_of_living}}</dd>
-            <dt>Tech Universities</dt><dd>{{data.universities.tech}}</dd>
-            <dt>Marketing Universities</dt><dd>{{data.universities.tech}}</dd>
-            <dt>Finance Universities</dt><dd>{{data.universities.finance}}</dd>
-            <dt>Weather</dt><dd>{{data.weather}}</dd>
-        </dl>
-        <div class="select_city">Incubate here</div>
+        <div class="row">
+            <div class="column grid_12">
+                <h2>{{name}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_4">
+                <img src="img/cities/{{image}}" />
+            </div>
+            <div class="column grid_8">
+                <dl>
+                    <dt>Agriculture</dt><dd>{{data.business.agriculture}}</dd>
+                    <dt>Hardware</dt><dd>{{data.business.hardware}}</dd>
+                    <dt>Health</dt><dd>{{data.business.health}}</dd>
+                    <dt>Buzzword Compliance</dt><dd>{{data.business.web}}</dd>
+                    <dt>Cost of Living</dt><dd>{{data.cost_of_living}}</dd>
+                    <dt>Tech Universities</dt><dd>{{data.universities.tech}}</dd>
+                    <dt>Marketing Universities</dt><dd>{{data.universities.tech}}</dd>
+                    <dt>Finance Universities</dt><dd>{{data.universities.finance}}</dd>
+                    <dt>Weather</dt><dd>{{data.weather}}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="select_city ready_button">Next</div>
+    </mustache>
+
+    <mustache title="manage_incubator">
+        <div class="row">
+            <div class="column grid_4">
+                <h3 class="to_center">Events</h3>
+                <div class="event_list"></div>
+            </div>
+            <div class="column grid_4">
+                <h3 class="to_center">Startups</h3>
+                <div class="startup_list"></div>
+            </div>
+            <div class="column grid_4">
+                <h3 class="to_center">Advisors</h3>
+                <div class="advisors_list"></div>
+            </div>
+        </div>
+        <div class="ready_button">Next</div>
+
+    </mustache>
+    
+    <mustache title="results">
+        <div class="row">
+            <div class="column grid_12">
+                <h2>Results of your incubator</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_4">
+                <img src="img/cities/{{image}}" />
+            </div>
+            <div class="column grid_8">
+                <dl>
+                    <dt>Startups incubated:</dt><dd>{{number_of_startups}}</dd>
+                    <dt>Incubated startups profitable:</dt><dd>{{profitable_startups}}</dd>
+                    <dt>Total income:</dt><dd>{{incubator_total_income}}</dd>
+
+                </dl>
+            </div>
+        </div>
+        <div class="ready_button">Start again</div>
+    </mustache>
+
+    <mustache title="list_entry">
+        <div class="list_entry {{selected}}">
+            <h4>{{title}}</h4>
+            <small>{{tagline}}</small>
         </div>
     </mustache>
 
