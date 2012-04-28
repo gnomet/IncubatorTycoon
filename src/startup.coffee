@@ -11,26 +11,25 @@ S.generate_startup = () ->
   ret =
     team_fit: random_int(10)
     team: S.random_team()
-    business_cost: random_int(10)
     burn_rate: random_int(10) * C.burn_basis
-    cash: random_int(5) * C.cash_basis
+    cash: random_int(10) * C.cash_basis
   industries =
     agriculture:
-      technical: 4
-      marketing: 4
-      finance: 2
+      technical: 0.4
+      marketing: 0.4
+      finance: 0.2
     hardware:
-      technical: 6
-      marketing: 3
-      finance: 1
+      technical: 0.6
+      marketing: 0.3
+      finance: 0.1
     health:
-      technical: 1
-      marketing: 3
-      finance: 5
+      technical: 0.1
+      marketing: 0.3
+      finance: 0.5
     buzzwords:
-      technical: 1
-      marketing: 8
-      finance: 1
+      technical: 0.1
+      marketing: 0.8
+      finance: 0.1
   industry = C.all_industries[random_int(C.all_industries.length-1)]
   ret.project_requirements = industries[ industry ]
 
@@ -49,7 +48,7 @@ S.startup_matchup = (startup) ->
 
   match = 0
   for skill, importance in startup.project_requirements
-    match += importance * 0.1 * team_skills[skill]
+    match += importance * team_skills[skill]
 
   return match
 
@@ -65,6 +64,15 @@ S.burn_startup = (startup) ->
   startup.cash += profit
   return startup
 
+S.startup_unit_test = () ->
+  startup = S.generate_startup()
+  console.log('startup is ',startup)
+  match = S.startup_matchup(startup)
+  console.log('success is ',match)
+  startup = S.develop_startup(startup)
+  console.log('startup developed into ',startup)
+  startup = S.burn_startup(startup)
+  console.log('startup burned ',startup)
 
 window.S = S
 
