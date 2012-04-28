@@ -1,6 +1,7 @@
-$(document).ready(function(){
+//$(document).ready(function(){
+function coffeescript_ready(){
     run();
-});
+}//);
 
 function run(){
     load_mustache_templates();

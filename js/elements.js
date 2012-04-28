@@ -29,6 +29,7 @@ function $start_screen(){
 
         $(db.cities).each(function(i, elem){
             var city = db.cities[i];
+						city.data.weather = L.textify("weather", city.data.weather)
             console.log(city);
             var $city = ich.city(city);
 
