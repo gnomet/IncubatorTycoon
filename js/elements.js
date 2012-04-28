@@ -29,10 +29,12 @@ function $start_screen(){
 
         $(db.cities).each(function(i, elem){
             var city = db.cities[i];
+						city.data.weather = L.textify("weather", city.data.weather)
             console.log(city);
             var $city = ich.city(city);
             $city.bind("click", function(){
                 var $description = ich.city_description(city);
+								
                 $description.find("#select_city").bind("click", function(){
                     $elem.hide();
                     $manage_incubator.trigger("new_season");
